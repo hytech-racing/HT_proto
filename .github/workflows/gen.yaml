@@ -3,7 +3,7 @@ name: Generate and Release
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-lib:
@@ -19,8 +19,8 @@ jobs:
       
       - uses: actions/checkout@v4
         with:
-          repository: hytech-racing/HT_params
-          ref: refs/heads/main
+          repository: hytech-racing/HT_proto
+          ref: refs/heads/master
           
       - run: nix run .#nanopb-runner
 
