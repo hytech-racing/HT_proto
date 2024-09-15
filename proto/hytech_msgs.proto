@@ -1,0 +1,28 @@
+syntax = "proto3";
+package hytech_msgs;
+
+message SpeedControlOut {
+    float pos_torque_limit_nm = 1;
+    float neg_torque_limit_nm = 2;
+    float desired_rpm = 3;
+}
+
+message SpeedControlIn {
+    float accel_percent = 1;
+    float brake_percent = 2;
+}
+
+message veh_vec_float
+{
+    float FL = 1;
+    float FR = 2;
+    float RL = 3;
+    float RR = 4;
+}
+
+message MCUData
+{
+    float accel_percent = 1;
+    float brake_percent = 2;
+    veh_vec_float rpm_data = 3;
+}
