@@ -30,6 +30,5 @@ message MCUOutputData
 message MCUCommandData
 {
     veh_vec_float desired_rpms =1;
-    veh_vec_float pos_torque_limit_nm =2;
-    veh_vec_float neg_torque_limit_nm =3;
+    veh_vec_float torque_limit_nm =2;
 }
