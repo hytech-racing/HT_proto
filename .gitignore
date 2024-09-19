@@ -1,2 +1,3 @@
 hytech_msgs.pb.*
+base_msgs.pb.*
 ./hytech_msgs.proto

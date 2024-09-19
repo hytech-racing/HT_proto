@@ -19,7 +19,7 @@
       nanopb_runner = pkgs.writeShellScriptBin "run-nanopb" ''
         #!${pkgs.stdenv.shell}
         export PATH="${pkgs.protobuf}/bin:$PATH"
-        ${pkgs.nanopb}/bin/nanopb_generator.py -I=./proto hytech_msgs.proto
+        ${pkgs.nanopb}/bin/nanopb_generator.py -I=./proto hytech_msgs.proto base_msgs.proto
       '';
     in
     {

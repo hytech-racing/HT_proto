@@ -1,0 +1,10 @@
+syntax = "proto3";
+package hytech_msgs;
+
+message veh_vec_float
+{
+    float FL = 1;
+    float FR = 2;
+    float RL = 3;
+    float RR = 4;
+}

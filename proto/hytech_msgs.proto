@@ -1,6 +1,8 @@
 syntax = "proto3";
 package hytech_msgs;
 
+import "base_msgs.proto";
+
 message SpeedControlOut {
     float pos_torque_limit_nm = 1;
     float neg_torque_limit_nm = 2;
@@ -12,13 +14,7 @@ message SpeedControlIn {
     float brake_percent = 2;
 }
 
-message veh_vec_float
-{
-    float FL = 1;
-    float FR = 2;
-    float RL = 3;
-    float RR = 4;
-}
+
 
 message MCUOutputData
 {
