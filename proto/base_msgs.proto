@@ -8,3 +8,49 @@ message veh_vec_float
     float RL = 3;
     float RR = 4;
 }
+
+message xyz_vector
+{
+    float x = 1;
+    float y = 2;
+    float z = 3;
+}
+
+message ypr_vector
+{
+    float yaw = 1;
+    float pitch = 2;
+    float roll = 3;
+}
+
+message GPS_data
+{
+    float lat = 1;
+    float lon = 2;
+}
+
+enum INSStatus {
+  TRACKING_0 = 0;
+  ALIGNING_1 = 1;
+  TRACKING_2 = 2;
+  GPS_LOSS_3 = 3;
+}
+
+
+message GPS_compass_signal_health_status
+{
+    int32 num_sats_pvt_1 = 1;
+    int32 num_sats_rtk_1 = 2;
+    int32 highest_cn0_1 = 3;
+    int32 num_sats_pvt_2 = 4;
+    int32 num_sats_rtk_2 = 5;
+    int32 highest_cn0_2 = 6;
+    int32 num_com_sats_pvt = 7; 
+    int32 num_com_sats_rtk= 8;
+}
+
+message vn_status
+{
+    INSStatus ins_status = 1;
+    GPS_compass_signal_health_status gps_status = 2;
+}

@@ -14,8 +14,6 @@ message SpeedControlIn {
     float brake_percent = 2;
 }
 
-
-
 message MCUOutputData
 {
     float accel_percent = 1;
@@ -27,4 +25,15 @@ message MCUCommandData
 {
     veh_vec_float desired_rpms =1;
     veh_vec_float torque_limit_nm =2;
+}
+
+message VNData
+{
+    xyz_vector vn_vel_m_s = 1;
+    xyz_vector vn_linear_accel_m_ss = 2;
+    xyz_vector vn_linear_accel_uncomp_m_ss = 3;
+    xyz_vector vn_angular_rate_rad_s = 4;
+    ypr_vector vn_ypr_rad = 5;
+    GPS_data vn_gps = 6;
+    vn_status status = 7;
 }
