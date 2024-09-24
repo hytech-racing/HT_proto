@@ -42,6 +42,7 @@ jobs:
           tag_name: ${{ steps.date.outputs.date }}
           files: |
             hytech_msgs_pb_lib.tar.gz
+            ./proto/base_msgs.proto
             ./proto/hytech_msgs.proto
 
 
