@@ -32,6 +32,7 @@ jobs:
         run: |
           mkdir -p hytech_msgs_pb_lib
           mv *.pb.* hytech_msgs_pb_lib
+          mv hytech_msgs_version.h hytech_msgs_pb_lib
           echo -e "{\n\"name\": \"hytech_msgs_pb_lib\",\n\"version\": \"1.${{ github.run_number }}.0\"\n}" >> hytech_msgs_pb_lib/library.json
           tar -czvf hytech_msgs_pb_lib.tar.gz hytech_msgs_pb_lib
       
