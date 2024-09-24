@@ -3,6 +3,26 @@ package hytech_msgs;
 
 import "base_msgs.proto";
 
+message MCUProtoVersion
+{
+    string proto_version = 1;
+}
+
+message VCRProtoVersion
+{
+    string proto_version = 1;
+}
+
+message VCFProtoVersion
+{
+    string proto_version = 1;
+}
+
+message DBProtoVersion
+{
+    string proto_version = 1;
+}
+
 message SpeedControlOut {
     float pos_torque_limit_nm = 1;
     float neg_torque_limit_nm = 2;

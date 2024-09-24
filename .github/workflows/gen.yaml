@@ -17,17 +17,17 @@ jobs:
         id: branch-name
         uses: tj-actions/branch-names@v7
       
+      - name: Get current date and time
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H_%M_%S')"
+
       - uses: actions/checkout@v4
         with:
           repository: hytech-racing/HT_proto
           ref: refs/heads/master
           
-      - run: nix run .#nanopb-runner
-
-      - name: Get current date and time
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H_%M_%S')"
-
+      - run: nix run .#nanopb-runner -- ${{ steps.date.outputs.date }}
+      
       - name: create release artifact
         run: |
           mkdir -p hytech_msgs_pb_lib
