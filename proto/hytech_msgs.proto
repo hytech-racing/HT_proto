@@ -57,3 +57,14 @@ message VNData
     GPS_data vn_gps = 6;
     vn_status status = 7;
 }
+
+message VehicleData
+{
+    bool is_ready_to_drive = 1;
+    SpeedControlIn current_inputs = 2;
+    xyz_vector current_body_vel_ms = 3;
+    xyz_vector current_body_accel_mss = 4;
+    xyz_vector current_angular_rate_rads = 5;
+    ypr_vector current_ypr_rad = 6;
+    veh_vec_float current_rpms = 7;
+}
