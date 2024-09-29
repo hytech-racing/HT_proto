@@ -67,4 +67,5 @@ message VehicleData
     xyz_vector current_angular_rate_rads = 5;
     ypr_vector current_ypr_rad = 6;
     veh_vec_float current_rpms = 7;
+    bool state_is_valid = 8;
 }
