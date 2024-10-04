@@ -39,12 +39,15 @@ message MCUOutputData
     float accel_percent = 1;
     float brake_percent = 2;
     veh_vec_float rpm_data = 3;
+    int MCU_recv_millis = 4;
+    float steering_angle_deg = 5;
 }
 
 message MCUCommandData
 {
-    veh_vec_float desired_rpms =1;
-    veh_vec_float torque_limit_nm =2;
+    veh_vec_float desired_rpms = 1;
+    veh_vec_float torque_limit_nm = 2;
+    int prev_MCU_recv_millis = 3;
 }
 
 message VNData
@@ -68,4 +71,5 @@ message VehicleData
     ypr_vector current_ypr_rad = 6;
     veh_vec_float current_rpms = 7;
     bool state_is_valid = 8;
+    int prev_MCU_recv_millis = 9;
 }
