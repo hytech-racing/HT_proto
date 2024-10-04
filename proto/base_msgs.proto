@@ -16,6 +16,15 @@ message xyz_vector
     float z = 3;
 }
 
+message veh_vec_xyz_vector
+{
+    xyz_vector FL = 1;
+    xyz_vector FR = 2;
+    xyz_vector RL = 3;
+    xyz_vector RR = 4;
+}
+
+
 message ypr_vector
 {
     float yaw = 1;
@@ -53,4 +62,12 @@ message vn_status
 {
     INSStatus ins_status = 1;
     GPS_compass_signal_health_status gps_status = 2;
+}
+
+message TireDynamics
+{
+    veh_vec_xyz_vector tire_forces_n = 1;
+    veh_vec_xyz_vector tire_moments_nm = 2;
+    veh_vec_float accel_saturation_nm = 3;
+    veh_vec_float brake_saturation_nm = 4;
 }
