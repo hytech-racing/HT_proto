@@ -72,4 +72,5 @@ message VehicleData
     veh_vec_float current_rpms = 7;
     bool state_is_valid = 8;
     int64 prev_MCU_recv_millis = 9;
+    float steering_angle_deg = 10;
 }
