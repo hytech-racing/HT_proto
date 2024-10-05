@@ -23,12 +23,6 @@ message DBProtoVersion
     string proto_version = 1;
 }
 
-message SpeedControlOut {
-    float pos_torque_limit_nm = 1;
-    float neg_torque_limit_nm = 2;
-    float desired_rpm = 3;
-}
-
 message SpeedControlIn {
     float accel_percent = 1;
     float brake_percent = 2;
@@ -74,4 +68,5 @@ message VehicleData
     int64 prev_MCU_recv_millis = 9;
     float steering_angle_deg = 10;
     TireDynamics tire_dynamics = 11;
+    veh_vec_float driver_torque = 12;
 }
