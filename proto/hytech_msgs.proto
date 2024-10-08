@@ -70,4 +70,6 @@ message VehicleData
     float steering_angle_deg = 10;
     TireDynamics tire_dynamics = 11;
     veh_vec_float driver_torque = 12;
+    float v_y_lm = 13;
+    float psi_dot_lm_deg_s = 14;
 }
