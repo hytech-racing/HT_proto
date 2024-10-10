@@ -23,6 +23,16 @@ message DBProtoVersion
     string proto_version = 1;
 }
 
+message HTProtoVersion
+{
+    string ht_proto_version = 1;
+}
+
+message HTCanVersion 
+{
+    string ht_can_version = 1;
+}
+
 message SpeedControlIn {
     float accel_percent = 1;
     float brake_percent = 2;
