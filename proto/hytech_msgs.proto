@@ -82,5 +82,5 @@ message VehicleData
     TireDynamics tire_dynamics = 11;
     veh_vec_float driver_torque = 12;
     float v_y_lm = 13;
-    float psi_dot_lm_deg_s = 14;
+    float psi_dot_lm_rad_s = 14;
 }
