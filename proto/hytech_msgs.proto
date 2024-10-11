@@ -23,14 +23,9 @@ message DBProtoVersion
     string proto_version = 1;
 }
 
-message HTProtoVersion
-{
-    string ht_proto_version = 1;
-}
-
-message HTCanVersion 
-{
+message Versions {
     string ht_can_version = 1;
+    string ht_proto_version = 2;
 }
 
 message SpeedControlIn {
