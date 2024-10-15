@@ -71,3 +71,9 @@ message TireDynamics
     veh_vec_float accel_saturation_nm = 3;
     veh_vec_float brake_saturation_nm = 4;
 }
+
+message TorqueVectoringStatus
+{
+    veh_vec_float torque_additional_nm = 1;
+    float additional_mz_moment_nm = 2;
+}
