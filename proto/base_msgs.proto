@@ -76,4 +76,6 @@ message TorqueVectoringStatus
 {
     veh_vec_float torque_additional_nm = 1;
     float additional_mz_moment_nm = 2;
+    float des_psi_dot = 3;
+    float psi_dot_err = 4;
 }
