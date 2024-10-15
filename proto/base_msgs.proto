@@ -80,4 +80,5 @@ message TorqueVectoringStatus
     float psi_dot_err = 4;
     float perceived_vx = 5;
     float integral_yaw_rate_err = 6;
+    float perceived_psi_dot = 7;
 }
