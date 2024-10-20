@@ -11,10 +11,10 @@ message veh_vec_float
 
 message veh_vec_int
 {
-    int FL = 1;
-    int FR = 2;
-    int RL = 3;
-    int RR = 4;
+    int32 FL = 1;
+    int32 FR = 2;
+    int32 RL = 3;
+    int32 RR = 4;
 }
 
 message xyz_vector
