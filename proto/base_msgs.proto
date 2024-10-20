@@ -9,6 +9,14 @@ message veh_vec_float
     float RR = 4;
 }
 
+message veh_vec_int
+{
+    int FL = 1;
+    int FR = 2;
+    int RL = 3;
+    int RR = 4;
+}
+
 message xyz_vector
 {
     float x = 1;

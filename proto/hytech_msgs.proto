@@ -40,7 +40,7 @@ message MCUOutputData
     veh_vec_float rpm_data = 3;
     int64 MCU_recv_millis = 4;
     float steering_angle_deg = 5;
-    veh_vec_float load_cell_data = 6;
+    veh_vec_int load_cell_data = 6;
     bool timing_failure_active = 7;
 }
 
