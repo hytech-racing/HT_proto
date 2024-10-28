@@ -72,7 +72,7 @@ message vn_status
     bool error_imu = 3;
     bool error_mag_pres = 4;
     bool error_gnss = 5;
-    bool gnss_headings_ins = 6;
+    bool gnss_heading_ins = 6;
     bool gnss_compass = 7;
     GPS_compass_signal_health_status gps_status = 8;
 }
