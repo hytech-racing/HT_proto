@@ -46,13 +46,12 @@ message GPS_data
     float lon = 2;
 }
 
-enum INSStatus {
+enum INSMode {
   TRACKING_0 = 0;
   ALIGNING_1 = 1;
   TRACKING_2 = 2;
   GPS_LOSS_3 = 3;
 }
-
 
 message GPS_compass_signal_health_status
 {
@@ -68,8 +67,14 @@ message GPS_compass_signal_health_status
 
 message vn_status
 {
-    INSStatus ins_status = 1;
-    GPS_compass_signal_health_status gps_status = 2;
+    INSMode ins_mode = 1;
+    bool gnss_fix = 2;
+    bool error_imu = 3;
+    bool error_mag_pres = 4;
+    bool error_gnss = 5;
+    bool gnss_heading_ins = 6;
+    bool gnss_compass = 7;
+    GPS_compass_signal_health_status gps_status = 8;
 }
 
 message TireDynamics
