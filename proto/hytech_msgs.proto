@@ -79,4 +79,5 @@ message VehicleData
     float v_y_lm = 13;
     float psi_dot_lm_rad_s = 14;
     TorqueVectoringStatus tv_status = 15;
+    PowerLimitStatus power_limit_status = 16;
 }

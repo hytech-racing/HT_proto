@@ -98,3 +98,9 @@ message TorqueVectoringStatus
     float vy_vn_gain = 9;
     float perceived_vy = 10;
 }
+
+message PowerLimitStatus
+{
+    bool power_limit_status = 1;
+    veh_vec_float corner_power_kw = 2;
+}
