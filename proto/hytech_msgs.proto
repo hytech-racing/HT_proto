@@ -42,6 +42,7 @@ message MCUOutputData
     float steering_angle_deg = 5;
     veh_vec_int load_cell_data = 6;
     bool timing_failure_active = 7;
+    int32 round_trip_time_millis = 8;
 }
 
 message MCUCommandData
