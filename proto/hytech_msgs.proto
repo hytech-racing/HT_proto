@@ -83,3 +83,23 @@ message VehicleData
     PowerLimitStatus power_limit_status = 16;
     float electrical_power_watts = 17;
 }
+
+message SWData
+{
+    float weight_lf;
+    float weight_rf;
+    float weight_lr;
+    float weight_rr;
+    float weight_left;
+    float weight_right;
+    float weight_front;
+    float weight_rear;
+    float weight_front_bite;
+    float weight_rear_bite;
+    float weight_cross;
+    float weight_total;
+    float weight_total_selected;
+}
+
+
+
