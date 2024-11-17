@@ -83,3 +83,59 @@ message VehicleData
     PowerLimitStatus power_limit_status = 16;
     float electrical_power_watts = 17;
 }
+
+message test_outport {
+  float FXFL = 1;
+  float FXFR = 2;
+  float FXRL = 3;
+  float FXRR = 4;
+  float FYFL = 5;
+  float FYFR = 6;
+  float FYRL = 7;
+  float FYRR = 8;
+  float FZFL = 9;
+  float FZFR = 10;
+  float FZRL = 11;
+  float FZRR = 12;
+  float MZFL = 13;
+  float MZFR = 14;
+  float MZRL = 15;
+  float MZRR = 16;
+  float satAccelTFL = 17;
+  float satAccelTFR = 18;
+  float satAccelTRL = 19;
+  float satAccelTRR = 20;
+  float satBrakeTFL = 21;
+  float satBrakeTFR = 22;
+  float satBrakeTRL = 23;
+  float satBrakeTRR = 24;
+  float torq_req_FL = 25;
+  float torq_req_FR = 26;
+  float torq_req_RL = 27;
+  float torq_req_RR = 28;
+  float Linear_Model_Outputs = 29;
+  float Vy_LM = 30;
+  float Psi_dot_LMrads = 31;
+  float Psi_dot_LMdegs = 32;
+  float AdditionalMzNm = 33;
+  float Torq_Add_FL = 34;
+  float Torq_Add_FR = 35;
+  float Torq_Add_RL = 36;
+  float Torq_Add_RR = 37;
+  float DesiredYawRaterads = 38;
+  float Perceived_Vx = 39;
+  float Yaw_Rate_Err = 40;
+  float Integral_Yaw_Rate_Err = 41;
+  float perceived_psi_dot = 42;
+  float psi_dot_gain = 43;
+  float vy_vn_gain = 44;
+  float perceived_vy = 45;
+  float power_limit_status = 46;
+  float corner_power_kw_fl = 47;
+  float corner_power_kw_fr = 48;
+  float corner_power_kw_rl = 49;
+  float corner_power_kw_rr = 50;
+}
+message outports_proto {
+  test_outport test_outport_msg = 1;
+}
