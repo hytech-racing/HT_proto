@@ -84,6 +84,8 @@ message VehicleData
     float electrical_power_watts = 17;
 }
 
+//define structs 
+
 message VCFInterfaceData_s
 {
     PedalsUnfiltered_s pedals_unfiltered = 1;
@@ -91,7 +93,7 @@ message VCFInterfaceData_s
     FrontSusPotsUnfiltered_s front_suspots_unfiltered = 3;
     SteeringUnfiltered_s steering_unfiltered = 4;
     DashInputState_s dash_input_state = 5; 
-};
+}
 
 message VCFSystemData_s
 {
@@ -100,7 +102,7 @@ message VCFSystemData_s
     FrontSusPotsFiltered_s front_suspots_filtered = 3;
     SteeringFiltered_s steering_filtered = 4;
     DashDisplayState_s dash_display = 5;
-};
+}
 
 message VCRInterfaceData_s
 {
@@ -123,5 +125,5 @@ message VCRSystemData_s
     FrontSusPotsFiltered_s front_suspots_filtered = 6;
     SteeringFiltered_s steering_filtered = 7;
     DashInputState_s dash_input_state = 8;
-    bool buzzer_is_active : 1 = 9;
+    bool buzzer_is_active = 9; //how to incorporate bit field
 }
