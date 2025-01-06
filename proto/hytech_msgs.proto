@@ -259,38 +259,38 @@ message CurrentSensorData_s
 
 struct ShutdownSensingData_s
 {
-    bool i_shutdown_in : 1 = 1;
-    bool j_bspd_relay : 1 = 2;
-    bool k_watchdog_relay : 1 = 3;
-    bool l_bms_relay : 1 = 4;
-    bool m_imd_relay : 1 = 5;
+    bool i_shutdown_in = 1;
+    bool j_bspd_relay = 2;
+    bool k_watchdog_relay = 3;
+    bool l_bms_relay = 4;
+    bool m_imd_relay = 5;
 
-    bool bspd_is_ok : 1 = 6;
-    bool watchdog_is_ok : 1 = 7;
-    bool bms_is_ok : 1 = 8;
-    bool imd_is_ok : 1 = 9;
+    bool bspd_is_ok = 6;
+    bool watchdog_is_ok = 7;
+    bool bms_is_ok = 8;
+    bool imd_is_ok = 9;
 }
 
 message EthernetLinkData_s
 {
-    bool acu_link : 1 = 1;
-    bool drivebrain_link : 1 = 2;
-    bool vcf_link : 1 = 3;
-    bool teensy_link : 1 = 4;
-    bool debug_link : 1 = 5;
-    bool ubiquiti_link : 1 = 6;
+    bool acu_link = 1;
+    bool drivebrain_link = 2;
+    bool vcf_link = 3;
+    bool teensy_link = 4;
+    bool debug_link = 5;
+    bool ubiquiti_link = 6;
 }
 
 message InverterData_s
 {
-    bool system_ready : 1 = 1;
-    bool error : 1 = 2;
-    bool warning : 1 = 3;
-    bool quit_dc_on : 1 = 4;
-    bool dc_on : 1 = 5;
-    bool quit_inverter_on : 1 = 6;
-    bool inverter_on : 1 = 7;
-    bool derating_on : 1 = 8;
+    bool system_ready = 1;
+    bool error = 2;
+    bool warning = 3;
+    bool quit_dc_on = 4;
+    bool dc_on = 5;
+    bool quit_inverter_on = 6;
+    bool inverter_on = 7;
+    bool derating_on = 8;
     int32 speed_rpm = 9;
     int32 actual_motor_torque = 10;
     int32 commanded_torque = 11;
@@ -313,24 +313,24 @@ message VCRSystemData_s
     FrontSusPotsFiltered_s front_suspots_filtered = 6;
     SteeringFiltered_s steering_filtered = 7;
     DashInputState_s dash_input_state = 8;
-    bool buzzer_is_active : 1 = 9; //how to incorporate bit field
+    bool buzzer_is_active = 9; //how to incorporate bit field
 }
 
 message SafetySystemData_s
 {
-    bool software_is_ok : 1 = 1;
+    bool software_is_ok = 1;
 }
 
 message RearSusPotsFiltered_s
 {
     float RL_sus_pot_filtered_analog = 1;
     float RR_sus_pot_filtered_analog = 2;
-    bool rear_loadcell_FIR_is_saturated : 1 = 3;
+    bool rear_loadcell_FIR_is_saturated = 3;
 }
 
 message RearLoadCellsFiltered_s
 {
     float RL_loadcell_filtered_pounds = 1;
     float RR_loadcell_filtered_pounds = 2;
-    bool rear_loadcell_FIR_is_saturated : 1 = 3;
+    bool rear_loadcell_FIR_is_saturated = 3;
 }
