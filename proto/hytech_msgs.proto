@@ -242,7 +242,7 @@ message VCRInterfaceData_s
         float current_refererence_unfiltered = 3;
     }
 
-struct ShutdownSensingData_s
+    message ShutdownSensingData_s
     {
         bool i_shutdown_in = 1;
         bool j_bspd_relay = 2;
