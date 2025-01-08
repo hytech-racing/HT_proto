@@ -94,45 +94,6 @@ message VCFInterfaceData_s
     FrontSusPotsUnfiltered_s front_suspots_unfiltered = 3;
     SteeringUnfiltered_s steering_unfiltered = 4;
     DashInputState_s dash_input_state = 5; 
-
-    message PedalsUnfiltered_s 
-    {
-        float accel1_unfiltered_percent = 1;
-        float accel2_unfiltered_percent = 2;
-        float brake1_unfiltered_percent = 3;
-        float brake2_unfiltered_percent = 4;
-    }
-
-    message FrontLoadCellsUnfiltered_s
-    {
-        float FL_loadcell_unfiltered_pounds = 1;
-        float FR_loadcell_unfiltered_pounds = 2;
-    }
-
-    message FrontSusPotsUnfiltered_s
-    {
-        float FL_sus_pot_unfiltered_analog = 1;
-        float FR_sus_pot_unfiltered_analog = 2;
-    }
-
-    message SteeringUnfiltered_s
-    {
-        float analog_steering_unfiltered_degrees = 1;
-        float digital_steering_unfiltered_degrees = 2;
-    }
-
-    message DashInputState_s
-    {
-        bool dim_btn_is_pressed = 1;
-        bool preset_btn_is_pressed = 2;
-        bool mc_reset_btn_is_pressed = 3; 
-        bool mode_btn_is_pressed = 4; 
-        bool start_btn_is_pressed = 5; 
-        bool data_btn_is_pressed = 6;
-        bool left_paddle_is_pressed = 7; 
-        bool right_paddle_is_pressed = 8; 
-        ControllerMode_e dial_state = 9;
-    }   
 }
 
 
@@ -143,45 +104,6 @@ message VCFSystemData_s
     FrontSusPotsFiltered_s front_suspots_filtered = 3;
     SteeringFiltered_s steering_filtered = 4;
     DashDisplayState_s dash_display = 5;
-
-    message PedalsSystemData_s
-    {
-        bool accel_is_implausible = 1; 
-        bool brake_is_implausible = 2; 
-        bool brake_is_pressed = 3; 
-        bool accel_is_pressed = 4;
-        bool mech_brake_is_active = 5; 
-        bool brake_and_accel_pressed_implausibility_high = 6; 
-        bool implausibility_has_exceeded_max_duration = 7; 
-        float accel_percent = 8;
-        float brake_percent = 9;
-        float regen_percent = 10; 
-    }
-
-    message FrontLoadCellsFiltered_s
-    {
-        float FL_loadcell_filtered_pounds = 1;
-        float FR_loadcell_filtered_pounds = 2;
-        bool front_loadcell_FIR_is_saturated = 3;
-    }
-
-    message FrontSusPotsFiltered_s
-    {
-        float FL_sus_pot_filtered_analog = 1;
-        float FR_sus_pot_filtered_analog = 2;
-        bool front_loadcell_FIR_is_saturated = 3; 
-    }
-
-    message SteeringFiltered_s
-    {
-        float steering_filtered_degrees = 1;
-        bool steering_FIR_is_saturated : 1 = 2;
-    }
-
-    message DashDisplayState_s
-    {
-        int32 dash_data = 1; //what to do if variable is defined
-    }
 
 }
 
@@ -196,97 +118,7 @@ message VCRInterfaceData_s
     EthernetLinkData_s ethernet_is_linked = 6;
     veh_vec<InverterData_s> inverter_data = 7;
 
-    message RearLoadCellsUnfiltered_s 
-    {
-        float RL_loadcell_unfiltered_pounds = 1;
-        float RR_loadcell_unfiltered_pounds = 2;
-    }
-
-    message RearSusPotsUnfiltered_s
-    {
-        float RL_sus_pot_unfiltered_analog = 1;
-        float RR_sus_pot_unfiltered_analog = 2;
-    }
-
-    message VectorNavData_s
-    {
-        float velocity_x = 1;
-        float velocity_y = 2;
-        float velocity_z = 3;
-        float linear_accel_x = 4;
-        float linear_accel_y = 5;
-        float linear_accel_z = 6;
-        float uncompLinear_accel[3] = 7; 
-        float yaw = 8;
-        float pitch = 9;
-        float roll = 10;
-        double latitude = 11;
-        double longitude = 12;
-        double ecef_coords[3] = 13; 
-        int64_t gps_time = 14;     
-        int8_t vn_status = 15;     
-        xyz_vec<float> angular_rates = 16; //need xyz struct?
-
-        message xyz_vec
-        {
-            T x = 1;
-            T y = 2;
-            T z = 3;
-        }
-    }
-
-    message CurrentSensorData_s
-    {
-        float twentyfour_volt_sensor = 1;
-        float current_sensor_unfiltered = 2;
-        float current_refererence_unfiltered = 3;
-    }
-
-    message ShutdownSensingData_s
-    {
-        bool i_shutdown_in = 1;
-        bool j_bspd_relay = 2;
-        bool k_watchdog_relay = 3;
-        bool l_bms_relay = 4;
-        bool m_imd_relay = 5;
-
-        bool bspd_is_ok = 6;
-        bool watchdog_is_ok = 7;
-        bool bms_is_ok = 8;
-        bool imd_is_ok = 9;
-    }
-
-message EthernetLinkData_s
-    {
-        bool acu_link = 1;
-        bool drivebrain_link = 2;
-        bool vcf_link = 3;
-        bool teensy_link = 4;
-        bool debug_link = 5;
-        bool ubiquiti_link = 6;
-    }
-
-    message InverterData_s
-    {
-        bool system_ready = 1;
-        bool error = 2;
-        bool warning = 3;
-        bool quit_dc_on = 4;
-        bool dc_on = 5;
-        bool quit_inverter_on = 6;
-        bool inverter_on = 7;
-        bool derating_on = 8;
-        int32 speed_rpm = 9;
-        int32 actual_motor_torque = 10;
-        int32 commanded_torque = 11;
-        int32 motor_temp = 12;
-        int32 inverter_temp = 13;
-        int32 diagnostic_number = 14;
-        int32 igbt_temp = 15;
-        int32 dc_bus_voltage = 16;
-        int32 actual_power = 17;
-        int32 feedback_torque = 18;
-    }
+    
 }
 
 
@@ -301,25 +133,7 @@ message VCRSystemData_s
     FrontSusPotsFiltered_s front_suspots_filtered = 6;
     SteeringFiltered_s steering_filtered = 7;
     DashInputState_s dash_input_state = 8;
-    bool buzzer_is_active = 9; //how to incorporate bit field
+    bool buzzer_is_active = 9; 
 
-    message SafetySystemData_s
-    {
-        bool software_is_ok = 1;
-    }
-
-message RearSusPotsFiltered_s
-    {
-        float RL_sus_pot_filtered_analog = 1;
-        float RR_sus_pot_filtered_analog = 2;
-        bool rear_loadcell_FIR_is_saturated = 3;
-    }
-
-message RearLoadCellsFiltered_s
-    {
-        float RL_loadcell_filtered_pounds = 1;
-        float RR_loadcell_filtered_pounds = 2;
-        bool rear_loadcell_FIR_is_saturated = 3;
-    }
 }
 
