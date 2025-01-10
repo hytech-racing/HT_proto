@@ -116,7 +116,7 @@ message VCRInterfaceData_s
     CurrentSensorData_s current_sensor_data = 4;
     ShutdownSensingData_s shutdown_sensing_data = 5;
     EthernetLinkData_s ethernet_is_linked = 6;
-    veh_vec<InverterData_s> inverter_data = 7;
+    veh_vec_inverter inverter_data = 7;
 
     
 }
