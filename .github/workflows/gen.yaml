@@ -1,4 +1,4 @@
-name: Generate, Release, and Maintain
+name: Generate, Release, and Document
 
 on:
   push:
@@ -6,7 +6,6 @@ on:
       - master
 
 jobs:
-
   build-lib:
     runs-on: ubuntu-latest
     strategy:
@@ -17,6 +16,17 @@ jobs:
         with:
           repository: hytech-racing/HT_proto
           ref: refs/heads/master
+
+      - name: Save Commit Message
+        id: save_commit
+        run: |
+          COMMIT_MESSAGES=$(git log -1 --pretty=format:"%s")
+          LATEST_COMMIT_HASH=$(git log -1 --pretty=format:"%H")
+          PARENT_COMMITS=$(git rev-list --parents -n 1 $LATEST_COMMIT_HASH)
+          ACTUAL_COMMIT_HASH=$(echo $PARENT_COMMITS | cut -d' ' -f2)
+          ACTUAL_COMMIT_MSG=$(git log --format=%B -n 1 $ACTUAL_COMMIT_HASH)
+          ACTUAL_COMMIT_MSG=$(echo "$ACTUAL_COMMIT_MSG" | sed 's/^Merge pull request.*//' | tr -d '\n')
+          echo "ACTUAL_COMMIT_MSG=${ACTUAL_COMMIT_MSG}" >> $GITHUB_ENV
 
       - name: Set up Protobuf tools and Generate HTML file
         run: |
@@ -72,17 +82,14 @@ jobs:
             ./docs/index.html
 
       - uses: actions/checkout@v4
-      
+        with:
+          repository: hytech-racing/HT_proto
+          ref: refs/heads/master
+
       - name: Generate changelog entry
         id: changelog
         run: |
           RELEASE_VERSION="${{ env.date }}"
-          COMMIT_MESSAGES=$(git log -1 --pretty=format:"%s")
-          LATEST_COMMIT_HASH=$(git log -1 --pretty=format:"%H")
-          PARENT_COMMITS=$(git rev-list --parents -n 1 $LATEST_COMMIT_HASH)
-          ACTUAL_COMMIT_HASH=$(echo $PARENT_COMMITS | cut -d' ' -f2)
-          ACTUAL_COMMIT_MSG=$(git log --format=%B -n 1 $ACTUAL_COMMIT_HASH)
-          ACTUAL_COMMIT_MSG=$(echo "$ACTUAL_COMMIT_MSG" | sed 's/^Merge pull request.*//' | tr -d '\n')
           CHANGELOG_FILE="CHANGELOG.md"
           NEW_ENTRY="## [${RELEASE_VERSION}](https://github.com/${{ github.repository }}/releases/tag/${RELEASE_VERSION})\n\n"
           NEW_ENTRY+="* ${ACTUAL_COMMIT_MSG}\n\n"
