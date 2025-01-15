@@ -11,31 +11,7 @@ jobs:
         version: [23.11]
 
     steps:
-      - uses: cachix/install-nix-action@v23
-      - name: Get branch names
-        id: branch-name
-        uses: tj-actions/branch-names@v7
-      
-      - name: Get current date and time
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H_%M_%S')"
-
-      - uses: actions/checkout@v4
-        with:
-          repository: hytech-racing/HT_proto
-          ref: refs/heads/master
-          
-      - run: nix run .#nanopb-runner -- ${{ steps.date.outputs.date }}
-      
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ steps.date.outputs.date }}
-          files: |
-            hytech_msgs_pb_lib.tar.gz
-            ./proto/base_msgs.proto
-            ./proto/hytech_msgs.proto
-
-      - run: 'python3 test.py "${{ github.event.client_payload }}"'
+      - name: Test Send JSON
+        run: 'python3 test.py "${{ github.event.client_payload }}"'
 
 
