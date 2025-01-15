@@ -308,3 +308,7 @@ message RearLoadCellsFiltered_s
     float RR_loadcell_filtered_pounds = 2;
     bool rear_loadcell_FIR_is_saturated = 3;
 }
+
+message Volt {
+    optional repeated float volt = 1;
+}

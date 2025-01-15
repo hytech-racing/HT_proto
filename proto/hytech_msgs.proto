@@ -137,3 +137,20 @@ message VCRSystemData_s
 
 }
 
+message BMSData
+{
+    repeated Volt voltages = 1; //not sure if this is the right way to handle nested array
+    repeated float cell_temperatures = 2;
+    repeated float humidity = 3;
+    repeated float board_temperatures = 4;
+    float min_voltage = 5;
+    float max_voltage = 6;
+    uint64 min_voltage_cell_id = 7;
+    uint64 max_voltage_cell_id = 8;
+    uint64 max_board_temperature_segment_id = 9;
+    uint64 max_humidity_segment_id = 10;
+    uint64 max_cell_temperature_cell_id = 11;
+    float total_voltage = 12;
+    float average_cell_temperature = 13;
+}
+
