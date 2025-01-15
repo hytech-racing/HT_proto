@@ -1,0 +1,8 @@
+% for model in models:
+message ${model} {
+% for outport in model['outports']:
+  ${outport['type']} ${field['name']} = ${field['number']};
+% endfor
+}
+
+% endfor
