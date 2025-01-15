@@ -2,8 +2,7 @@ name: Generate and Release
 
 
 on:
-  repository_dispatch:
-    types: [custom-event]
+  repository_dispatch
 
 jobs:
   build-lib:
