@@ -24,6 +24,6 @@ jobs:
         run: 'ls'
 
       - name: Test Send JSON
-        run: 'echo "Received JSON: ${{ github.event.client_payload }}"'
+        run: 'echo "Received JSON: ${{ toJson(github.event.client_payload) }}"'
 
 
