@@ -1,7 +1,7 @@
 name: Generate and Release
 
 on:
-  repository_dispatch:
+  repository_dispatch
 
 jobs:
   build-lib:
