@@ -12,6 +12,9 @@ jobs:
 
     steps:
 
+      - name: Check out repository
+        uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -19,7 +22,7 @@ jobs:
 
       - name: LS
         run: 'ls'
-                
+
       - name: Test Send JSON
         run: 'python3 test.py "${{ github.event.client_payload }}"'
 
