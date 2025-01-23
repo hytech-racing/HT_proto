@@ -1,0 +1,45 @@
+name: Document
+
+on:
+  workflow_run:
+    workflows: ["Generate and Release"]
+    types:
+      - completed
+
+jobs:
+  build-doc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          workflow_conclusion: success
+          name: tag-name-artifact
+
+      - name: Set tag_name from file
+        run: |
+          TAG_NAME=$(cat tag_name.txt)
+          echo "tag_name=$TAG_NAME" >> $GITHUB_ENV
+
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ env.tag_name }}
+
+      - name: Set up Protobuf tools and generate HTML file
+        run: |
+          sudo apt-get install -y --no-install-recommends protobuf-compiler
+          go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
+          export PATH=$PATH:$HOME/go/bin
+          mkdir -p docs
+          protoc -I=proto --doc_out=./docs --doc_opt=html,index.html proto/*.proto
+      
+      - name: Upload asset to existing release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.tag_name }}
+          files: |
+            ./docs/index.html
+
+      

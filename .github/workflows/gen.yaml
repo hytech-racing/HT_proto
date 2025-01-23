@@ -1,4 +1,4 @@
-name: Generate, Release, and Document
+name: Generate and Release
 
 on:
   push:
@@ -12,58 +12,23 @@ jobs:
       matrix:
         version: [23.11]
     steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: hytech-racing/HT_proto
-          ref: refs/heads/master
-
-      - name: Save Commit Message
-        id: save_commit
-        run: |
-          COMMIT_MESSAGES=$(git log -1 --pretty=format:"%s")
-          LATEST_COMMIT_HASH=$(git log -1 --pretty=format:"%H")
-          PARENT_COMMITS=$(git rev-list --parents -n 1 $LATEST_COMMIT_HASH)
-          ACTUAL_COMMIT_HASH=$(echo $PARENT_COMMITS | cut -d' ' -f2)
-          ACTUAL_COMMIT_MSG=$(git log --format=%B -n 1 $ACTUAL_COMMIT_HASH)
-          ACTUAL_COMMIT_MSG=$(echo "$ACTUAL_COMMIT_MSG" | sed 's/^Merge pull request.*//' | tr -d '\n')
-          echo "ACTUAL_COMMIT_MSG=${ACTUAL_COMMIT_MSG}" >> $GITHUB_ENV
-
-      - name: Set up Protobuf tools and Generate HTML file
-        run: |
-          sudo apt-get install -y --no-install-recommends protobuf-compiler
-          go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
-          export PATH=$PATH:$HOME/go/bin
-          mkdir -p docs
-          protoc -I=proto --doc_out=./docs --doc_opt=html,index.html proto/*.proto
-          
-      - name: Commit and push updated documentation
-        env:
-          GH_TOKEN: ${{ secrets.GEN_GITHUB_TOKEN }}
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/index.html
-          git diff --quiet --cached || git commit -m "Update HTML documentation"
-          git push
-
       - uses: cachix/install-nix-action@v23
-
       - name: Get branch names
         id: branch-name
         uses: tj-actions/branch-names@v7
       
       - name: Get current date and time
         id: date
-        run: echo "date=$(date +'%Y-%m-%dT%H_%M_%S')" >> $GITHUB_ENV
+        run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H_%M_%S')"
 
       - uses: actions/checkout@v4
         with:
           repository: hytech-racing/HT_proto
           ref: refs/heads/master
-
-      - run: nix run .#nanopb-runner -- ${{ env.date }}
-
-      - name: Create release artifact
+          
+      - run: nix run .#nanopb-runner -- ${{ steps.date.outputs.date }}
+      
+      - name: create release artifact
         run: |
           mkdir -p hytech_msgs_pb_lib
           mv *.pb.* hytech_msgs_pb_lib
@@ -74,30 +39,17 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ env.date }}
+          tag_name: ${{ steps.date.outputs.date }}
           files: |
             hytech_msgs_pb_lib.tar.gz
             ./proto/base_msgs.proto
             ./proto/hytech_msgs.proto
-            ./docs/index.html
 
-      - uses: actions/checkout@v4
+      - name: Save tag name to file
+        run: echo ${{ steps.date.outputs.date }} > tag_name.txt
+
+      - name: Upload tag_name as artifact
+        uses: actions/upload-artifact@v3
         with:
-          repository: hytech-racing/HT_proto
-          ref: refs/heads/master
-
-      - name: Generate changelog entry
-        id: changelog
-        run: |
-          RELEASE_VERSION="${{ env.date }}"
-          CHANGELOG_FILE="CHANGELOG.md"
-          NEW_ENTRY="## [${RELEASE_VERSION}](https://github.com/${{ github.repository }}/releases/tag/${RELEASE_VERSION})\n\n"
-          NEW_ENTRY+="* ${ACTUAL_COMMIT_MSG}\n\n"
-          echo -e "${NEW_ENTRY}$(cat $CHANGELOG_FILE)" > $CHANGELOG_FILE
-
-      - name: Commit and push updated changelog
-        run: |
-          git add CHANGELOG.md
-          git commit -m "Update changelog for release ${{ github.event.release.tag_name }}"
-          git push
-
+          name: tag-name-artifact
+          path: tag_name.txt
