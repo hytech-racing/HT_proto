@@ -139,8 +139,11 @@ message VCRSystemData_s
 
 message BMSData
 {
-    repeated Volt voltages = 1; //not sure if this is the right way to handle nested array
-    repeated float cell_temperatures = 2;
+    //repeated Volt voltages = 1; //not sure if this is the right way to handle nested array
+    float voltages[126] = 1
+    float cell_temperatures[12] = 2;
+
+    /*
     repeated float humidity = 3;
     repeated float board_temperatures = 4;
     float min_voltage = 5;
@@ -152,5 +155,19 @@ message BMSData
     uint64 max_cell_temperature_cell_id = 11;
     float total_voltage = 12;
     float average_cell_temperature = 13;
+    */
 }
 
+
+
+message AMSSystemData_s
+{
+    float min_cell_voltage = 1;
+    float average_cell_voltage = 2;
+    float max_cell_voltage = 3;
+    float min_temp = 4; // Degrees celsius
+    float average_temp = 5; // Degrees celsius
+    float max_temp = 6; // Degrees celsius
+
+    bool ams_ok = 7; // False when one of the three shutdown conditions is met (see AMSSystem header)
+}
