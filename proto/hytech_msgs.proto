@@ -83,3 +83,7 @@ message VehicleData
     PowerLimitStatus power_limit_status = 16;
     float electrical_power_watts = 17;
 }
+
+message AeroData {
+    repeated float readings_pa = 1;
+}
