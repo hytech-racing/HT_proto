@@ -33,13 +33,13 @@ jobs:
           go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
           export PATH=$PATH:$HOME/go/bin
           mkdir -p docs
-          protoc -I=proto --doc_out=./docs --doc_opt=html,index.html proto/*.proto
+          protoc -I=proto --doc_out=./docs --doc_opt=html,${{ env.tag_name }}.html proto/*.proto
       
       - name: Upload asset to existing release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.tag_name }}
           files: |
-            ./docs/index.html
+            ./docs/${{ env.tag_name }}.html
 
       
