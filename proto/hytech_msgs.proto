@@ -89,51 +89,42 @@ message VehicleData
 
 message VCFInterfaceData_s
 {
-    PedalsUnfiltered_s pedals_unfiltered = 1;
-    FrontLoadCellsUnfiltered_s front_loadcells_unfiltered = 2;
-    FrontSusPotsUnfiltered_s front_suspots_unfiltered = 3;
-    SteeringUnfiltered_s steering_unfiltered = 4;
-    DashInputState_s dash_input_state = 5; 
+    PedalSensorData_s pedals_data = 1;
+    FrontLoadCellData_s front_loadcell_data = 2;
+    FrontSusPotData_s front_suspot_data = 3;
+    SteeringSensorData_s steering_data = 4;
+    DashInputState_s dash_input_state = 5; // Direct button signals from the dashboard IOExpander
+    CurrentSensorData_s current_sensor_data = 6;
+    VCFEthernetLinkData_s vcf_ethernet_link_data = 7;
 }
 
 
 message VCFSystemData_s
 {
     PedalsSystemData_s pedals_system_data = 1;
-    FrontLoadCellsFiltered_s front_loadcells_filtered = 2;
-    FrontSusPotsFiltered_s front_suspots_filtered = 3;
-    SteeringFiltered_s steering_filtered = 4;
-    DashDisplayState_s dash_display = 5;
 
 }
 
 
 message VCRInterfaceData_s
 {
-    RearLoadCellsUnfiltered_s rear_loadcells_unfiltered = 1;
-    RearSusPotsUnfiltered_s rear_suspots_unfiltered = 2;
-    VectorNavData_s vectornav_data = 3;
-    CurrentSensorData_s current_sensor_data = 4;
-    ShutdownSensingData_s shutdown_sensing_data = 5;
-    EthernetLinkData_s ethernet_is_linked = 6;
-    veh_vec_inverter inverter_data = 7;
-
-    
+    RearLoadCellData_s rear_loadcell_data = 1;
+    RearSusPotData_s rear_suspot_data = 2;
+    ShutdownSensingData_s shutdown_sensing_data = 3;
+    VCREthernetLinkData_s ethernet_is_linked = 4;
+    veh_vec<InverterData_s> inverter_data = 5;
+    CurrentSensorData_s current_sensor_data = 6;
 }
 
 
 
 message VCRSystemData_s
 {
-    RearLoadCellsFiltered_s rear_loadcells_filtered = 1;
-    RearSusPotsFiltered_s rear_suspots_filtered = 2;
-    SafetySystemData_s safety_system_data = 3;
-    PedalsSystemData_s pedals_system_data = 4;
-    FrontLoadCellsFiltered_s front_loadcells_filtered = 5;
-    FrontSusPotsFiltered_s front_suspots_filtered = 6;
-    SteeringFiltered_s steering_filtered = 7;
-    DashInputState_s dash_input_state = 8;
-    bool buzzer_is_active = 9; 
+    PedalsSystemData_s pedals_system_data = 1;
+    DashInputState_s dash_input_state = 2;
+    DrivetrainDynamicReport_s drivetrain_data = 3;
+    AMSSystemData_s ams_data = 4;
+    bool buzzer_is_active = 5; 
 
 }
 
@@ -143,19 +134,6 @@ message BMSData
     float voltages[126] = 1
     float cell_temperatures[12] = 2;
 
-    /*
-    repeated float humidity = 3;
-    repeated float board_temperatures = 4;
-    float min_voltage = 5;
-    float max_voltage = 6;
-    uint64 min_voltage_cell_id = 7;
-    uint64 max_voltage_cell_id = 8;
-    uint64 max_board_temperature_segment_id = 9;
-    uint64 max_humidity_segment_id = 10;
-    uint64 max_cell_temperature_cell_id = 11;
-    float total_voltage = 12;
-    float average_cell_temperature = 13;
-    */
 }
 
 
