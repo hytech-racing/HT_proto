@@ -87,7 +87,7 @@ message VehicleData
 
 //define structs 
 
-message VCFInterfaceData_s
+message VCFData_s
 {
     PedalSensorData_s pedals_data = 1;
     FrontLoadCellData_s front_loadcell_data = 2;
@@ -96,17 +96,11 @@ message VCFInterfaceData_s
     DashInputState_s dash_input_state = 5; // Direct button signals from the dashboard IOExpander
     CurrentSensorData_s current_sensor_data = 6;
     VCFEthernetLinkData_s vcf_ethernet_link_data = 7;
+    PedalsSystemData_s pedals_system_data = 8;
 }
 
 
-message VCFSystemData_s
-{
-    PedalsSystemData_s pedals_system_data = 1;
-
-}
-
-
-message VCRInterfaceData_s
+message VCRData_s
 {
     RearLoadCellData_s rear_loadcell_data = 1;
     RearSusPotData_s rear_suspot_data = 2;
@@ -114,38 +108,28 @@ message VCRInterfaceData_s
     VCREthernetLinkData_s ethernet_is_linked = 4;
     veh_vec<InverterData_s> inverter_data = 5;
     CurrentSensorData_s current_sensor_data = 6;
+    PedalsSystemData_s pedals_system_data = 7;
+    DashInputState_s dash_input_state = 8;
+    DrivetrainDynamicReport_s drivetrain_data = 9;
+    AMSSystemData_s ams_data = 10;
+    bool buzzer_is_active = 11;
 }
 
-
-
-message VCRSystemData_s
+message ACUCoreData
 {
-    PedalsSystemData_s pedals_system_data = 1;
-    DashInputState_s dash_input_state = 2;
-    DrivetrainDynamicReport_s drivetrain_data = 3;
-    AMSSystemData_s ams_data = 4;
-    bool buzzer_is_active = 5; 
-
+    float pack_voltage = 1;
+    float min_cell_voltage = 2;
+    float avg_cell_voltage = 3;
+    float max_cell_temp = 4;
 }
 
-message BMSData
+message ACUAllData
 {
-    //repeated Volt voltages = 1; //not sure if this is the right way to handle nested array
     float voltages[126] = 1
-    float cell_temperatures[12] = 2;
-
-}
-
-
-
-message AMSSystemData_s
-{
-    float min_cell_voltage = 1;
-    float average_cell_voltage = 2;
-    float max_cell_voltage = 3;
-    float min_temp = 4; // Degrees celsius
-    float average_temp = 5; // Degrees celsius
-    float max_temp = 6; // Degrees celsius
-
-    bool ams_ok = 7; // False when one of the three shutdown conditions is met (see AMSSystem header)
+    float cell_temperatures[48] = 2;
+    float board_humidities[6] = 3;
+    float max_cell_voltage = 4;
+    float min_cell_temp = 5;
+    float avg_cell_temp = 6;
+    ACUCoreData core_data = 7;
 }
