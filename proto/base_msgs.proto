@@ -381,3 +381,22 @@ message N
 message Volt {
     optional repeated float volt = 1;
 }
+
+/**
+ * Processed AMS system data (processed within VCR). This is different
+ * from ACUCoreData and ACUAllData because those are calculated/sent by
+ * the ACU, while this is processed in VCR (calculated from ACUCoreData
+ * and ACUAllData).
+ */
+message AMSSystemData_s
+{
+    float min_cell_voltage = 1;
+    float average_cell_voltage = 2;
+    float max_cell_voltage = 3;
+    float min_temp_celsius = 4; // Degrees celsius
+    float average_temp_celsius = 5; // Degrees celsius
+    float max_temp_celsius = 6; // Degrees celsius
+    float total_pack_voltage = 7;
+
+    bool ams_ok = 8; // False when one of the three shutdown conditions is met (see AMSSystem header)
+}
