@@ -1,6 +1,24 @@
 syntax = "proto3";
 package hytech_msgs;
 
+enum AnalogSensorStatus_e
+{
+    ANALOG_SENSOR_GOOD = 0;
+    ANALOG_SENSOR_CLAMPED = 1;
+}
+
+message AnalogConversion_s
+{
+    int raw = 1;
+    float conversion = 2;
+    AnalogSensorStatus_e status = 3;
+}
+
+message AnalogConversionPacket_s
+{
+    repeated AnalogConversion_s conversions = 1; //check
+}
+
 message veh_vec_float
 {
     float FL = 1;
@@ -16,6 +34,47 @@ message veh_vec_int
     int32 RL = 3;
     int32 RR = 4;
 }
+
+/**
+ * Nested struct of analog pedals data (stored as int from 0-4095).
+ */
+message PedalSensorData_s
+{
+    uint32 accel_1 = 1;
+    uint32 accel_2 = 2;
+    uint32 brake_1 = 3;
+    uint32 brake_2 = 4;
+}
+
+message InverterData_s
+    {
+        bool system_ready = 1;
+        bool error = 2;
+        bool warning = 3;
+        bool quit_dc_on = 4;
+        bool dc_on = 5;
+        bool quit_inverter_on = 6;
+        bool inverter_on = 7;
+        bool derating_on = 8;
+        sint32 speed_rpm = 9;
+        sint32 actual_motor_torque = 10;
+        sint32 commanded_torque = 11;
+        sint32 motor_temp = 12;
+        sint32 inverter_temp = 13;
+        sint32 diagnostic_number = 14;
+        sint32 igbt_temp = 15;
+        sint32 dc_bus_voltage = 16;
+        sint32 actual_power = 17;
+        sint32 feedback_torque = 18;
+    }
+
+message veh_vec_inverter
+    {
+    InverterData_s FL = 1;
+    InverterData_s FR = 2;
+    InverterData_s RL = 3;
+    InverterData_s RR = 4;
+    }
 
 message xyz_vector
 {
@@ -103,4 +162,241 @@ message PowerLimitStatus
 {
     bool power_limit_status = 1;
     veh_vec_float corner_power_kw = 2;
+}
+
+
+/**
+ * Unconverted, unfiltered front load cell data.
+ */
+message FrontLoadCellData_s
+{
+    uint32 FL_loadcell_analog = 1;
+    uint32 FR_loadcell_analog = 2;
+}
+
+/**
+ * Unconverted, unfiltered front sus pot data.
+ */
+message FrontSusPotData_s
+{
+    uint32 FL_sus_pot_analog = 1;
+    uint32 FR_sus_pot_analog = 2;
+}
+
+/**
+ * Non digitally-filtered steering data.
+ */
+message SteeringSensorData_s
+{
+    // Analog steering sensor data, in degrees.
+    float analog_steering_degrees = 1;
+    // Digital steering sensor data, unconverted (0-4095)
+    float digital_steering_analog = 2;
+}
+
+enum ControllerMode_e
+    {
+        /* No torque vectoring */
+        MODE_0 = 0;
+        /* Normal force torque vectoring */
+        MODE_1 = 1;
+        /* PID torque vectoring */
+        MODE_2 = 2;
+        /* Launch Ctrl */
+        MODE_3 = 3;
+        MODE_4 = 4;
+        MODE_5 = 5;
+    }
+
+message DashInputState_s
+{
+
+    bool dim_btn_is_pressed = 1;
+    bool preset_btn_is_pressed = 2;
+    bool mc_reset_btn_is_pressed = 3; 
+    bool mode_btn_is_pressed = 4; 
+    bool start_btn_is_pressed = 5; 
+    bool data_btn_is_pressed = 6;
+    bool left_paddle_is_pressed = 7; 
+    bool right_paddle_is_pressed = 8; 
+    ControllerMode_e dial_state = 9; 
+}   
+
+message PedalsSystemData_s
+{
+    bool accel_is_implausible = 1; 
+    bool brake_is_implausible = 2; 
+    bool brake_is_pressed = 3; 
+    bool accel_is_pressed = 4;
+    bool mech_brake_is_active = 5; 
+    bool brake_and_accel_pressed_implausibility_high = 6; 
+    bool implausibility_has_exceeded_max_duration = 7; 
+    float accel_percent = 8;
+    float brake_percent = 9;
+    float regen_percent = 10; 
+}
+
+
+
+message VectorNavData_s
+{
+    float velocity_x = 1;
+    float velocity_y = 2;
+    float velocity_z = 3;
+    float linear_accel_x = 4;
+    float linear_accel_y = 5;
+    float linear_accel_z = 6;
+    float uncompLinear_accel[3] = 7; 
+    float yaw = 8;
+    float pitch = 9;
+    float roll = 10;
+    double latitude = 11;
+    double longitude = 12;
+    double ecef_coords[3] = 13; 
+    int64_t gps_time = 14;     
+    int8_t vn_status = 15;     
+    xyz_vector angular_rates = 16; 
+}
+
+message CurrentSensorData_s
+{
+    float twentyfour_volt_sensor = 1;
+    float current_sensor_unfiltered = 2;
+    float current_refererence_unfiltered = 3;
+}
+
+message ShutdownSensingData_s
+{
+    bool i_shutdown_in = 1;
+    bool j_bspd_relay = 2;
+    bool k_watchdog_relay = 3;
+    bool l_bms_relay = 4;
+    bool m_imd_relay = 5;
+
+    bool bspd_is_ok = 6;
+    bool watchdog_is_ok = 7;
+    bool bms_is_ok = 8;
+    bool imd_is_ok = 9;
+}
+
+/**
+ * VCF's ethernet switch "link" data. This is a digital GPIO pin
+ * that should be high when "linked" to the ethernet switch and low otherwise.
+ */
+message VCFEthernetLinkData_s
+{
+    bool vcr_link = 1;
+    bool teensy_link = 2;
+    bool dash_link = 3;
+}
+
+/**
+ * VFR's ethernet switch "link" data. This is a digital GPIO pin that should
+ * be high when "linked" to the ethernet switch and low otherwise.
+ */
+message VCREthernetLinkData_s
+{
+    bool acu_link = 1;
+    bool drivebrain_link = 2;
+    bool vcf_link = 3;
+    bool teensy_link = 4;
+    bool debug_link = 5;
+    bool ubiquiti_link = 6;
+}
+
+message SafetySystemData_s
+{
+    bool software_is_ok = 1;
+}
+
+message RearSusPotData_s
+{
+    uint32 RL_sus_pot_analog = 1;
+    uint32 RR_sus_pot_analog = 2;
+}
+
+
+
+message RearLoadCellData_s
+{
+    uint32 RL_loadcell_analog = 1;
+    uint32 RR_loadcell_analog = 2;
+}
+
+
+
+message EnergyMeterData_s
+{
+    float em_current = 1; // Current, in amps, from the EM
+    float em_voltage = 2; // Voltage, in volts, from the EM.
+}
+
+enum TorqueLimit_e
+{
+    TCMUX_FULL_TORQUE = 0;
+    TCMUX_MID_TORQUE = 1;
+    TCMUX_LOW_TORQUE = 2;
+    TCMUX_NUM_TORQUE_LIMITS = 3;
+}
+
+enum TorqueControllerMuxError_e
+{
+    NO_ERROR = 0;
+    ERROR_SPEED_DIFF_TOO_HIGH = 1;
+    ERROR_TORQUE_DIFF_TOO_HIGH = 2;
+    ERROR_CONTROLLER_INDEX_OUT_OF_BOUNDS =3;
+    ERROR_CONTROLLER_NULL_POINTER =4;
+}
+
+message TorqueControllerMuxStatus_s
+{
+    TorqueControllerMuxError_e active_error = 1;
+    ControllerMode_e active_controller_mode = 2;
+    TorqueLimit_e active_torque_limit_enum = 3;
+    float active_torque_limit_value = 4;
+    bool output_is_bypassing_limits = 5;
+}
+
+message DrivetrainCommand_s
+{
+    float speeds_rpm[4] = 1;
+    float inverter_torque_limit[4] = 2; 
+}
+
+message DrivetrainDynamicReport_s
+{
+    uint16 measuredInverterFLPackVoltage = 1;
+    float measuredSpeeds[4] = 2; // rpm
+    float measuredTorques[4] = 3;
+    float measuredTorqueCurrents[4] = 4;
+    float measuredMagnetizingCurrents[4] = 5;
+
+}
+
+message N
+{
+    int n = 1
+}
+
+message Volt {
+    optional repeated float volt = 1;
+}
+
+/**
+ * Processed AMS system data (processed within VCR). This is different
+ * from ACUCoreData and ACUAllData because those are calculated/sent by
+ * the ACU, while this is processed in VCR (calculated from ACUCoreData
+ * and ACUAllData).
+ */
+message AMSSystemData_s
+{
+    float min_cell_voltage = 1;
+    float average_cell_voltage = 2;
+    float max_cell_voltage = 3;
+    float min_temp_celsius = 4; // Degrees celsius
+    float average_temp_celsius = 5; // Degrees celsius
+    float max_temp_celsius = 6; // Degrees celsius
+    float total_pack_voltage = 7;
+
+    bool ams_ok = 8; // False when one of the three shutdown conditions is met (see AMSSystem header)
 }
