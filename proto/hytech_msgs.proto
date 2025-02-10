@@ -93,19 +93,17 @@ message VehicleData
  */
 message VCFData_s
 {
-    PedalSensorData_s pedals_data = 1;
-    FrontLoadCellData_s front_loadcell_data = 2;
-    FrontSusPotData_s front_suspot_data = 3;
-    SteeringSensorData_s steering_data = 4;
-    DashInputState_s dash_input_state = 5; // Direct button signals from the dashboard IOExpander
-    CurrentSensorData_s current_sensor_data = 6;
-    VCFEthernetLinkData_s vcf_ethernet_link_data = 7;
-    PedalsSystemData_s pedals_system_data = 8;
+    FrontLoadCellData_s front_loadcell_data = 1;
+    FrontSusPotData_s front_suspot_data = 2;
+    SteeringSensorData_s steering_data = 3;
+    DashInputState_s dash_input_state = 4; // Direct button signals from the dashboard IOExpander
+    VCFEthernetLinkData_s vcf_ethernet_link_data = 5;
+    PedalsSystemData_s pedals_system_data = 6;
 }
 
 /**
  * All system AND interface data in VCR. VCR systems will place data in some of the nested structs, while
- * systems will place data in some of hte other nested structs.
+ * systems will place data in some of the other nested structs.
  */
 message VCRData_s
 {
@@ -115,13 +113,9 @@ message VCRData_s
     VCREthernetLinkData_s ethernet_is_linked = 4;
     veh_vec_inverter inverter_data = 5;
     CurrentSensorData_s current_sensor_data = 6;
-    PedalsSystemData_s pedals_system_data = 7;
-    DashInputState_s dash_input_state = 8;
     DrivetrainDynamicReport_s drivetrain_data = 9;
-    ACUCoreData_s acu_core_data = 10;
-    ACUAllData_s acu_all_data = 11;
-    AMSSystemData_s ams_data = 12;
-    bool buzzer_is_active = 13;
+    AMSSystemData_s ams_data = 10;
+    bool buzzer_is_active = 11;
 }
 
 /**
@@ -141,7 +135,7 @@ message ACUCoreData_s
  */
 message ACUAllData_s
 {
-    repeated float voltages = 1; // Should contain 126
-    repeated float cell_temperatures = 2; // Should contain 48
-    repeated float board_humidities = 3; // Should contain 6
+    repeated float voltages = 1 [(nanopb).max_count = 126];
+    repeated float cell_temperatures = 2 [(nanopb).max_count = 48];
+    repeated float board_humidities = 3 [(nanopb).max_count = 6];
 }
