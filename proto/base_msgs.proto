@@ -1,24 +1,6 @@
 syntax = "proto3";
 package hytech_msgs;
 
-enum AnalogSensorStatus_e
-{
-    ANALOG_SENSOR_GOOD = 0;
-    ANALOG_SENSOR_CLAMPED = 1;
-}
-
-message AnalogConversion_s
-{
-    uint32 raw = 1;
-    float conversion = 2;
-    AnalogSensorStatus_e status = 3;
-}
-
-message AnalogConversionPacket_s
-{
-    repeated AnalogConversion_s conversions = 1; //check
-}
-
 message veh_vec_float
 {
     float FL = 1;
