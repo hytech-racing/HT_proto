@@ -105,7 +105,7 @@ message VCFData_s
 
 /**
  * All system AND interface data in VCR. VCR systems will place data in some of the nested structs, while
- * systems will place data in some of hte other nested structs.
+ * systems will place data in some of the other nested structs.
  */
 message VCRData_s
 {
@@ -118,10 +118,8 @@ message VCRData_s
     PedalsSystemData_s pedals_system_data = 7;
     DashInputState_s dash_input_state = 8;
     DrivetrainDynamicReport_s drivetrain_data = 9;
-    ACUCoreData_s acu_core_data = 10;
-    ACUAllData_s acu_all_data = 11;
-    AMSSystemData_s ams_data = 12;
-    bool buzzer_is_active = 13;
+    AMSSystemData_s ams_data = 10;
+    bool buzzer_is_active = 11;
 }
 
 /**
