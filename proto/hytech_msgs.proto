@@ -138,6 +138,7 @@ message ACUCoreData_s
 
 /**
  * ACUAllData contains the detailed, unprocessed data from ACU sensors.
+ */
 message ACUAllData_s
 {
     float voltages[126] = 1;
