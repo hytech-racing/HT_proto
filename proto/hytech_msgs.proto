@@ -141,7 +141,7 @@ message ACUCoreData_s
  */
 message ACUAllData_s
 {
-    float voltages[126] = 1;
-    float cell_temperatures[48] = 2;
-    float board_humidities[6] = 3;
+    repeated float voltages = 1; // Should contain 126
+    repeated float cell_temperatures = 2; // Should contain 48
+    repeated float board_humidities = 3; // Should contain 6
 }

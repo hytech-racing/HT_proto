@@ -9,7 +9,7 @@ enum AnalogSensorStatus_e
 
 message AnalogConversion_s
 {
-    int raw = 1;
+    uint32 raw = 1;
     float conversion = 2;
     AnalogSensorStatus_e status = 3;
 }
@@ -236,28 +236,6 @@ message PedalsSystemData_s
     float regen_percent = 10; 
 }
 
-
-
-message VectorNavData_s
-{
-    float velocity_x = 1;
-    float velocity_y = 2;
-    float velocity_z = 3;
-    float linear_accel_x = 4;
-    float linear_accel_y = 5;
-    float linear_accel_z = 6;
-    float uncompLinear_accel[3] = 7; 
-    float yaw = 8;
-    float pitch = 9;
-    float roll = 10;
-    double latitude = 11;
-    double longitude = 12;
-    double ecef_coords[3] = 13; 
-    int64_t gps_time = 14;     
-    int8_t vn_status = 15;     
-    xyz_vector angular_rates = 16; 
-}
-
 message CurrentSensorData_s
 {
     float twentyfour_volt_sensor = 1;
@@ -357,29 +335,18 @@ message TorqueControllerMuxStatus_s
     bool output_is_bypassing_limits = 5;
 }
 
-message DrivetrainCommand_s
-{
-    float speeds_rpm[4] = 1;
-    float inverter_torque_limit[4] = 2; 
-}
-
 message DrivetrainDynamicReport_s
 {
-    uint16 measuredInverterFLPackVoltage = 1;
-    float measuredSpeeds[4] = 2; // rpm
-    float measuredTorques[4] = 3;
-    float measuredTorqueCurrents[4] = 4;
-    float measuredMagnetizingCurrents[4] = 5;
-
+    uint32 measuredInverterFLPackVoltage = 1;
+    veh_vec_float measuredSpeeds = 2; // rpm
+    veh_vec_float measuredTorques = 3;
+    veh_vec_float measuredTorqueCurrents = 4;
+    veh_vec_float measuredMagnetizingCurrents = 5;
 }
 
 message N
 {
-    int n = 1
-}
-
-message Volt {
-    optional repeated float volt = 1;
+    uint32 n = 1;
 }
 
 /**
