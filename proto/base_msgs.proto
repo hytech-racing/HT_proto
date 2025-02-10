@@ -35,6 +35,9 @@ message veh_vec_int
     int32 RR = 4;
 }
 
+/**
+ * Nested struct of analog pedals data (stored as int from 0-4095).
+ */
 message PedalSensorData_s
 {
     uint32 accel_1 = 1;
@@ -162,25 +165,33 @@ message PowerLimitStatus
 }
 
 
-
+/**
+ * Unconverted, unfiltered front load cell data.
+ */
 message FrontLoadCellData_s
 {
     uint32 FL_loadcell_analog = 1;
     uint32 FR_loadcell_analog = 2;
 }
 
+/**
+ * Unconverted, unfiltered front sus pot data.
+ */
 message FrontSusPotData_s
 {
     uint32 FL_sus_pot_analog = 1;
     uint32 FR_sus_pot_analog = 2;
 }
 
-
-
+/**
+ * Non digitally-filtered steering data.
+ */
 message SteeringSensorData_s
 {
+    // Analog steering sensor data, in degrees.
     float analog_steering_degrees = 1;
-    float digital_steering_degrees = 2;
+    // Digital steering sensor data, unconverted (0-4095)
+    float digital_steering_analog = 2;
 }
 
 enum ControllerMode_e
@@ -227,13 +238,6 @@ message PedalsSystemData_s
 
 
 
-message DashDisplayState_s
-{
-    int32 dash_data = 1; 
-}
-
-
-
 message VectorNavData_s
 {
     float velocity_x = 1;
@@ -275,7 +279,22 @@ message ShutdownSensingData_s
     bool imd_is_ok = 9;
 }
 
-message EthernetLinkData_s
+/**
+ * VCF's ethernet switch "link" data. This is a digital GPIO pin
+ * that should be high when "linked" to the ethernet switch and low otherwise.
+ */
+message VCFEthernetLinkData_s
+{
+    bool vcr_link = 1;
+    bool teensy_link = 2;
+    bool dash_link = 3;
+}
+
+/**
+ * VFR's ethernet switch "link" data. This is a digital GPIO pin that should
+ * be high when "linked" to the ethernet switch and low otherwise.
+ */
+message VCREthernetLinkData_s
 {
     bool acu_link = 1;
     bool drivebrain_link = 2;
