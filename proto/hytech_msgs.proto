@@ -113,7 +113,7 @@ message VCRData_s
     RearSusPotData_s rear_suspot_data = 2;
     ShutdownSensingData_s shutdown_sensing_data = 3;
     VCREthernetLinkData_s ethernet_is_linked = 4;
-    veh_vec<InverterData_s> inverter_data = 5;
+    veh_vec_inverter inverter_data = 5;
     CurrentSensorData_s current_sensor_data = 6;
     PedalsSystemData_s pedals_system_data = 7;
     DashInputState_s dash_input_state = 8;
@@ -137,9 +137,7 @@ message ACUCoreData_s
 }
 
 /**
- * ACUAllData contains an instance of the ACUCoreData, but also includes arrays with every single cell voltage,
- * temp, and humidity sensor.
- */
+ * ACUAllData contains the detailed, unprocessed data from ACU sensors.
 message ACUAllData_s
 {
     float voltages[126] = 1;
