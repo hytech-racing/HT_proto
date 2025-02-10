@@ -1,5 +1,6 @@
 syntax = "proto3";
 package hytech_msgs;
+import "nanopb.proto";
 
 import "base_msgs.proto";
 
