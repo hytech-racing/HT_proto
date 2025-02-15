@@ -26,7 +26,7 @@ jobs:
           repository: hytech-racing/HT_proto
           ref: refs/heads/master
           
-      - run: nix-shell -p nanopb
+      - run: nix run .#nanopb-runner -- ${{ steps.date.outputs.date }}
       
       - name: create release artifact
         run: |
