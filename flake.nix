@@ -32,14 +32,30 @@
         fi
         ${pkgs.nanopb}/bin/nanopb_generator.py -I=./proto hytech_msgs.proto base_msgs.proto
       '';
+      html_generator = pkgs.writeShellScriptBin "generate-html" ''
+        #!${pkgs.stdenv.shell}
+        export PATH="${pkgs.protoc-gen-doc}/bin:$PATH"
+        export PATH="${pkgs.protobuf}/bin:$PATH"
+
+        if [ -z "$1" ]; then
+          echo "Error: Missing argument for tag name."
+          exit 1
+        fi
+
+        protoc -I=proto -I=${pkgs.nanopb}/share/nanopb/generator/proto --doc_out=./docs --doc_opt=html,"$1".html proto/*.proto
+      '';
     in
     {
       packages = rec {
         nanopbRunner = nanopb_runner;
+        htmlGenerator = html_generator;
       };
       apps = {
         nanopb-runner = flake-utils.lib.mkApp {
           drv = nanopb_runner;
+        };
+        html-generator = flake-utils.lib.mkApp {
+          drv = html_generator;
         };
       };
 
