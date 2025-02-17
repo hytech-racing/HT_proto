@@ -30,7 +30,7 @@
         if [ "$#" -gt 0 ]; then
           generate_header "$1"
         fi
-        ${pkgs.nanopb}/bin/nanopb_generator.py -I=./proto hytech_msgs.proto base_msgs.proto
+        ${pkgs.nanopb}/bin/nanopb_generator.py -v -f proto/hytech_msgs.options -I=./proto hytech_msgs.proto base_msgs.proto
       '';
       html_generator = pkgs.writeShellScriptBin "generate-html" ''
         #!${pkgs.stdenv.shell}

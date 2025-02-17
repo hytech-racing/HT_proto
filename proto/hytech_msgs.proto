@@ -1,6 +1,5 @@
 syntax = "proto3";
 package hytech_msgs;
-import "nanopb.proto";
 import "base_msgs.proto";
 
 message MCUProtoVersion
@@ -135,7 +134,7 @@ message ACUCoreData_s
  */
 message ACUAllData_s
 {
-    repeated float voltages = 1 [(nanopb).max_count = 126];
-    repeated float cell_temperatures = 2 [(nanopb).max_count = 48];
-    repeated float board_humidities = 3 [(nanopb).max_count = 6];
+    repeated float voltages = 1;
+    repeated float cell_temperatures = 2;
+    repeated float board_humidities = 3;
 }
