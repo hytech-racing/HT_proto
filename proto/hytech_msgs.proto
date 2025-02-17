@@ -62,6 +62,23 @@ message VNData
     vn_status status = 7;
 }
 
+message SWData
+{
+    float weight_lf = 1;
+    float weight_rf = 2;
+    float weight_lr = 3;
+    float weight_rr = 4;
+    float weight_left = 5;
+    float weight_right = 6;
+    float weight_front = 7;
+    float weight_rear = 8;
+    float weight_front_bite = 9;
+    float weight_rear_bite = 10;
+    float weight_cross = 11;
+    float weight_total = 12;
+    float weight_total_selected = 13;
+}
+
 message VehicleData
 {
     bool is_ready_to_drive = 1;
