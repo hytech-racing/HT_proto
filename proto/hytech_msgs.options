@@ -1,3 +1,4 @@
 hytech_msgs.ACUAllData_s.voltages max_count:126
 hytech_msgs.ACUAllData_s.cell_temperatures max_count:48
 hytech_msgs.ACUAllData_s.board_humidities max_count:6
+hytech_msgs.VCRData_s.firmware_git_hash max_length:8

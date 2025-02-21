@@ -123,6 +123,7 @@ message VCRData_s
     DrivetrainDynamicReport_s drivetrain_data = 9;
     AMSSystemData_s ams_data = 10;
     bool buzzer_is_active = 11;
+    string firmware_git_hash = 12;
 }
 
 /**
