@@ -112,6 +112,14 @@ message VCFData_s
  * All system AND interface data in VCR. VCR systems will place data in some of the nested structs, while
  * systems will place data in some of the other nested structs.
  */
+
+message FWVersionInfo_s
+{
+    string git_hash = 1;
+    bool project_on_main_or_master = 2;
+    bool project_is_dirty = 3;
+}
+
 message VCRData_s
 {
     RearLoadCellData_s rear_loadcell_data = 1;
@@ -123,7 +131,7 @@ message VCRData_s
     DrivetrainDynamicReport_s drivetrain_data = 9;
     AMSSystemData_s ams_data = 10;
     bool buzzer_is_active = 11;
-    string firmware_git_hash = 12;
+    FWVersionInfo_s firmware_version_info = 12;
 }
 
 /**
