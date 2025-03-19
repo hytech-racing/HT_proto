@@ -89,6 +89,7 @@ message VehicleData
     TorqueVectoringStatus tv_status = 15;
     PowerLimitStatus power_limit_status = 16;
     float electrical_power_watts = 17;
+    bool is_using_torque_controller = 18;
 }
 
 
