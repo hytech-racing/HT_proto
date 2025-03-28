@@ -141,9 +141,10 @@ message VCRData_s
 message ACUCoreData_s
 {
     float pack_voltage = 1;
-    float min_cell_voltage = 2; // IIR filtered min cell voltage
+    float min_cell_voltage = 2;
     float avg_cell_voltage = 3;
-    float max_cell_temp = 4; // IIR filtered max cell temp
+    float max_cell_voltage = 4;
+    float max_cell_temp = 5;
 }
 
 /**
@@ -151,7 +152,8 @@ message ACUCoreData_s
  */
 message ACUAllData_s
 {
-    repeated float voltages = 1;
-    repeated float cell_temperatures = 2;
-    repeated float board_humidities = 3;
+    ACUCoreData_s core_data = 1;
+    repeated float voltages = 2;
+    repeated float cell_temperatures = 3;
+    repeated float board_humidities = 4;
 }
