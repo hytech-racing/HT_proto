@@ -138,7 +138,7 @@ message VCRData_s
  * Minimum data that the ACU must send for the car to run. Detailed temps/voltages are not minimum-viable. The
  * ACUAllData message contains an instance of the data in this ACUCoreData struct.
  */
-message ACUCoreData_s
+message ACUCoreData
 {
     float pack_voltage = 1;
     float min_cell_voltage = 2;
@@ -150,10 +150,16 @@ message ACUCoreData_s
 /**
  * ACUAllData contains the detailed, unprocessed data from ACU sensors.
  */
-message ACUAllData_s
+message ACUAllData
 {
-    ACUCoreData_s core_data = 1;
-    repeated float voltages = 2;
-    repeated float cell_temperatures = 3;
-    repeated float board_humidities = 4;
+    ACUCoreData core_data = 1; 
+    uint32 max_consecutive_invalid_packet_count = 2; // maximum consecutive invalid packet count across all chips
+    uint32 max_cell_voltage_id = 3; // refer to this bookstack page for reference about translating id to location: https://wiki.hytechracing.org/books/ht09-design/page/ht09-ams-isospi-bus-bar-layout-in-accumulator-Du5
+    uint32 min_cell_voltage_id = 4; // see max_cell_voltage_id docs
+    uint32 max_cell_temp_id = 5; // see max_cell_voltage_id docs
+    float measured_tractive_system_voltage = 6; // sensed by ACU's internal ADC - measured tractive system voltage
+    float measured_pack_voltage 7; // sensed by ACU's internal ADC - measured pack out voltage 
+    repeated float cell_voltages = 8;
+    repeated float cell_temperatures = 9;
+    repeated uint32 invalid_packet_chip_counts = 10; // consecutive number of invalid packets received per chip
 }
