@@ -132,7 +132,8 @@ message VCRData_s
     DrivetrainDynamicReport_s drivetrain_data = 9;
     AMSSystemData_s ams_data = 10;
     bool buzzer_is_active = 11;
-    FWVersionInfo_s firmware_version_info = 12;
+    TorqueControllerMuxStatus_s tcmux_status = 12;
+    FWVersionInfo_s firmware_version_info = 13;
 }
 
 /**
