@@ -1,4 +1,4 @@
-hytech_msgs.ACUAllData.voltages max_count:126
+hytech_msgs.ACUAllData.cell_voltages max_count:126
 hytech_msgs.ACUAllData.cell_temperatures max_count:48
-hytech_msgs.ACUAllData.consecutive_fault_count_per_chip max_count:12
+hytech_msgs.ACUAllData.invalid_packet_chip_counts max_count:12
 hytech_msgs.FWVersionInfo_s.git_hash max_length:8
