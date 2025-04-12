@@ -161,8 +161,8 @@ message ACUAllData
     uint32 max_cell_temp_id = 5; // see max_cell_voltage_id docs
     float measured_tractive_system_voltage = 6; // sensed by ACU's internal ADC - measured tractive system voltage
     float measured_pack_voltage = 7; // sensed by ACU's internal ADC - measured pack out voltage
-    float measured_bspd_current = 11; // measured bspd current
-    repeated float cell_voltages = 8;
-    repeated float cell_temperatures = 9;
-    repeated uint32 invalid_packet_chip_counts = 10; // consecutive number of invalid packets received per chip
+    float measured_bspd_current = 8; // measured bspd current
+    repeated float cell_voltages = 9;
+    repeated float cell_temperatures = 10;
+    repeated uint32 invalid_packet_chip_counts = 11; // consecutive number of invalid packets received per chip
 }
