@@ -90,6 +90,7 @@ message VehicleData
     PowerLimitStatus power_limit_status = 16;
     float electrical_power_watts = 17;
     bool is_using_torque_controller = 18;
+    veh_vec_float normalized_suspension_potentiometers = 19;
 }
 
 
