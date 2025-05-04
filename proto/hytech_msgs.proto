@@ -167,4 +167,7 @@ message ACUAllData
     repeated float cell_voltages = 10;
     repeated float cell_temperatures = 11;
     repeated uint32 invalid_packet_chip_counts = 12; // consecutive number of invalid packets received per chip
+    float measured_glv = 13; // measured global low voltage from teensy
+    float SoC = 14; // calculated state of charge / battery percentage - given from 0.0 to 1.0
+    float SoH = 15; // calculated state of health of battery pack - given from 0.0 to 1.0
 }
