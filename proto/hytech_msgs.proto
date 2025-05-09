@@ -161,7 +161,6 @@ message ACUCoreData
  */
 message ACUAllData
 {
-    ACUCoreData core_data = 1; 
     uint32 max_consecutive_invalid_packet_count = 2; // maximum consecutive invalid packet count across all chips
     uint32 max_cell_voltage_id = 3; // refer to this bookstack page for reference about translating id to location: https://wiki.hytechracing.org/books/ht09-design/page/ht09-ams-isospi-bus-bar-layout-in-accumulator-Du5
     uint32 min_cell_voltage_id = 4; // see max_cell_voltage_id docs
