@@ -151,8 +151,8 @@ message ACUCoreData
     float max_cell_voltage = 4;
     float max_cell_temp = 5;
     float max_board_temp = 6;
-    float measured_pack_out = 7;
-    float measured_ts_out = 8;
+    float measured_pack_voltage = 7; // sensed by ACU's internal ADC - measured pack out voltage
+    float measured_tractive_system_voltage = 8; // sensed by ACU's internal ADC - measured tractive system voltage
     float measured_glv = 9; // measured global low voltage from teensy
 }
 
@@ -166,8 +166,6 @@ message ACUAllData
     uint32 max_cell_voltage_id = 3; // refer to this bookstack page for reference about translating id to location: https://wiki.hytechracing.org/books/ht09-design/page/ht09-ams-isospi-bus-bar-layout-in-accumulator-Du5
     uint32 min_cell_voltage_id = 4; // see max_cell_voltage_id docs
     uint32 max_cell_temp_id = 5; // see max_cell_voltage_id docs
-    float measured_tractive_system_voltage = 6; // sensed by ACU's internal ADC - measured tractive system voltage
-    float measured_pack_voltage = 7; // sensed by ACU's internal ADC - measured pack out voltage
     float measured_bspd_current = 8; // measured bspd current
     FWVersionInfo_s firmware_version_info = 9;
     float valid_packet_rate = 10; // percentage of packets that are valid - given from 0.0 to 1.0
