@@ -137,6 +137,7 @@ message VCRData_s
     TorqueControllerMuxStatus_s tcmux_status = 11;
     FWVersionInfo_s firmware_version_info = 12;
     Versions msg_versions = 13;
+    float glv_measurement = 14;
 }
 
 /**
