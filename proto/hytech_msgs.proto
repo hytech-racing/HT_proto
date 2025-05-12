@@ -112,11 +112,6 @@ message VCFData_s
     Versions msg_versions = 8;
 }
 
-/**
- * All system AND interface data in VCR. VCR systems will place data in some of the nested structs, while
- * systems will place data in some of the other nested structs.
- */
-
 message FWVersionInfo_s
 {
     string git_hash = 1;
@@ -124,6 +119,26 @@ message FWVersionInfo_s
     bool project_is_dirty = 3;
 }
 
+/**
+ * All Status and State Data in VCR. Contains system level states including that in Vehicle and Drivetrain SM.
+ * Also contains interface level comm status of interfaces, including pedals.
+ */
+message VCRStatus
+{
+    string vehicle_state = 1;
+    string drivetrain_state = 2;
+    string active_tc_mux_error = 3;
+    uint32 active_controller_mode = 4;
+    string active_torque_limit = 5;
+    float active_torque_limit_value = 6;
+    bool tc_mux_bypass_limit = 7;
+    bool pedals_heartbeat_ok = 8;
+}
+
+/**
+ * All system AND interface data in VCR. VCR systems will place data in some of the nested structs, while
+ * systems will place data in some of the other nested structs.
+ */
 message VCRData_s
 {
     RearLoadCellData_s rear_loadcell_data = 1;
@@ -138,6 +153,7 @@ message VCRData_s
     FWVersionInfo_s firmware_version_info = 12;
     Versions msg_versions = 13;
     float measured_glv = 14;
+    VCRStatus_s status = 15;
 }
 
 /**
