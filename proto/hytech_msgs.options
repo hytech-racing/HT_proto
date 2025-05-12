@@ -6,5 +6,3 @@ hytech_msgs.Versions.ht_proto_version max_length:20
 hytech_msgs.FWVersionInfo_s.git_hash max_length:8
 hytech_msgs.VCRStatus.vehicle_state max_length:30
 hytech_msgs.VCRStatus.drivetrain_state max_length:30
-hytech_msgs.VCRStatus.active_tc_mux_error max_length:30
-hytech_msgs.VCRStatus.active_torque_limit max_length:20
