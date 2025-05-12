@@ -127,12 +127,7 @@ message VCRStatus
 {
     string vehicle_state = 1;
     string drivetrain_state = 2;
-    string active_tc_mux_error = 3;
-    uint32 active_controller_mode = 4;
-    string active_torque_limit = 5;
-    float active_torque_limit_value = 6;
-    bool tc_mux_bypass_limit = 7;
-    bool pedals_heartbeat_ok = 8;
+    bool pedals_heartbeat_ok = 3;
 }
 
 /**
