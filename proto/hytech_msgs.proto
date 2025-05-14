@@ -195,3 +195,7 @@ message ACUAllData
     repeated float board_temperatures = 15;
     repeated uint32 invalid_packet_chip_counts = 16; // consecutive number of invalid packets received per chip
 }
+
+message AeroData {
+    repeated float readings_pa = 1;
+}
