@@ -93,6 +93,12 @@ message VehicleData
     veh_vec_float suspension_potentiometers_mm = 19;
 }
 
+message SpeedTechLapTime
+{
+    float laptime = 1;
+    int64 lapcount = 2;
+}
+
 
 //define structs 
 
