@@ -369,24 +369,24 @@ message AMSSystemData_s
 }
 
 enum DrivetrainState_e {
-    NOT_CONNECTED = 1;
-    NOT_ENABLED_NO_HV_PRESENT = 2;
-    NOT_ENABLED_HV_PRESENT = 3;
-    INVERTERS_READY = 4;
-    INVERTERS_HV_ENABLED = 5;
-    ENABLED_DRIVE_MODE = 6;
-    ERROR = 7;
-    CLEARING_ERRORS = 8;
+    NOT_CONNECTED = 0;
+    NOT_ENABLED_NO_HV_PRESENT = 1;
+    NOT_ENABLED_HV_PRESENT = 2;
+    INVERTERS_READY = 3;
+    INVERTERS_HV_ENABLED = 4;
+    ENABLED_DRIVE_MODE = 5;
+    ERROR = 6;
+    CLEARING_ERRORS = 7;
 }
 
 enum VehicleState_e {
-    TRACTIVE_SYSTEM_NOT_ACTIVE = 1;
-    TRACTIVE_SYSTEM_ACTIVE = 2;
-    WANTING_READY_TO_DRIVE = 3;
-    READY_TO_DRIVE = 4;
-    WANTING_RECALIBRATE_PEDALS = 5;
-    RECALIBRATING_PEDALS = 6;
-};
+    TRACTIVE_SYSTEM_NOT_ACTIVE = 0;
+    TRACTIVE_SYSTEM_ACTIVE = 1;
+    WANTING_READY_TO_DRIVE = 2;
+    READY_TO_DRIVE = 3;
+    WANTING_RECALIBRATE_PEDALS = 4;
+    RECALIBRATING_PEDALS = 5;
+}
 
 /**
  * All Status and State Data in VCR. Contains system level states including that in Vehicle and Drivetrain SM.
