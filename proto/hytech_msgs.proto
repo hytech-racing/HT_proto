@@ -126,17 +126,6 @@ message FWVersionInfo_s
 }
 
 /**
- * All Status and State Data in VCR. Contains system level states including that in Vehicle and Drivetrain SM.
- * Also contains interface level comm status of interfaces, including pedals.
- */
-message VCRStatus
-{
-    string vehicle_state = 1;
-    string drivetrain_state = 2;
-    bool pedals_heartbeat_ok = 3;
-}
-
-/**
  * All system AND interface data in VCR. VCR systems will place data in some of the nested structs, while
  * systems will place data in some of the other nested structs.
  */

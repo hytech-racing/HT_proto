@@ -367,3 +367,36 @@ message AMSSystemData_s
 
     bool ams_ok = 8; // False when one of the three shutdown conditions is met (see AMSSystem header)
 }
+
+enum DrivetrainState_e {
+    NOT_CONNECTED = 1;
+    NOT_ENABLED_NO_HV_PRESENT = 2;
+    NOT_ENABLED_HV_PRESENT = 3;
+    INVERTERS_READY = 4;
+    INVERTERS_HV_ENABLED = 5;
+    ENABLED_DRIVE_MODE = 6;
+    ERROR = 7;
+    CLEARING_ERRORS = 8;
+}
+
+enum VehicleState_e {
+    TRACTIVE_SYSTEM_NOT_ACTIVE = 1;
+    TRACTIVE_SYSTEM_ACTIVE = 2;
+    WANTING_READY_TO_DRIVE = 3;
+    READY_TO_DRIVE = 4;
+    WANTING_RECALIBRATE_PEDALS = 5;
+    RECALIBRATING_PEDALS = 6;
+};
+
+/**
+ * All Status and State Data in VCR. Contains system level states including that in Vehicle and Drivetrain SM.
+ * Also contains interface level comm status of interfaces, including pedals.
+ */
+message VCRStatus
+{
+    VehicleState_e vehicle_state = 1;
+    DrivetrainState_e drivetrain_state = 2;
+    bool pedals_heartbeat_ok = 3;
+    bool drivebrain_is_in_control = 4;
+    bool drivebrain_controller_timing_failure = 5;
+}
