@@ -134,6 +134,7 @@ message vn_status
     bool gnss_heading_ins = 6;
     bool gnss_compass = 7;
     GPS_compass_signal_health_status gps_status = 8;
+    int32 ins_mode_int = 9;
 }
 
 message TireDynamics
