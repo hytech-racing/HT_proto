@@ -181,6 +181,7 @@ message ACUAllData
     float SoC = 11; // calculated state of charge / battery percentage - given from 0.0 to 1.0
     float SoH = 12; // calculated state of health of battery pack - given from 0.0 to 1.0
     Versions msg_versions = 17;
+    bool shutdown_has_gone_low = 18;
     repeated float cell_voltages = 13;
     repeated float cell_temperatures = 14;
     repeated float board_temperatures = 15;
