@@ -166,6 +166,7 @@ message ACUCoreData
     float min_measured_glv = 10; // lowest measured glv voltage from teensy 
     float min_measured_pack_voltage = 11; // lowest pack voltage measured
     float min_measured_tractive_system_voltage = 12; // lowest tractive system voltage measured
+    float min_measured_shdn_out_voltage = 13; // lowest shutdown out voltage read from teensy
 }
 
 /**
