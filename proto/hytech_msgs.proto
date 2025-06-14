@@ -160,9 +160,11 @@ message ACUCoreData
     float max_cell_voltage = 4;
     float max_cell_temp = 5;
     float max_board_temp = 6;
-    float measured_pack_voltage = 7; // sensed by ACU's internal ADC - measured pack out voltage
-    float measured_tractive_system_voltage = 8; // sensed by ACU's internal ADC - measured tractive system voltage
+    float max_measured_pack_voltage = 7; // sensed by ACU's internal ADC - measured pack out voltage
+    float max_measured_tractive_system_voltage = 8; // sensed by ACU's internal ADC - measured tractive system voltage
     float measured_glv = 9; // measured global low voltage from teensy
+    float min_measured_pack_voltage = 10; // lowest pack voltage measured
+    float min_measured_tractive_system_voltage = 11; // lowest tractive system voltage measured
 }
 
 /**
