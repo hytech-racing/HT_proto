@@ -146,6 +146,7 @@ message VCRData_s
     Versions msg_versions = 13;
     float measured_glv = 14;
     VCRStatus status = 15;
+    VCRLOC vcr_loc_data = 16;
 }
 
 /**
