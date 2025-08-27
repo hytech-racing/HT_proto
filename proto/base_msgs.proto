@@ -402,3 +402,9 @@ message VCRStatus
     bool drivebrain_is_in_control = 4;
     bool drivebrain_controller_timing_failure = 5;
 }
+
+message VCRLOC
+{
+    bool ACU_LOC = 1;
+    bool VCF_LOC = 2;
+}
