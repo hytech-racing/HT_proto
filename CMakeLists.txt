@@ -1,7 +1,6 @@
-if (Protobuf_FOUND) 
-    set(PROTO_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/generated/)
-    set(LIBRARY hytech_msgs_cpp_lib)
-    set(OBJECT_LIBRARY hytech_msgs_cpp_lib_object)
+set(PROTO_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/generated/)
+set(LIBRARY hytech_msgs_cpp_lib)
+set(OBJECT_LIBRARY hytech_msgs_cpp_lib_object)
 
     file(MAKE_DIRECTORY ${PROTO_BINARY_DIR})
 
@@ -33,4 +32,3 @@ if (Protobuf_FOUND)
         FILES_MATCHING
         PATTERN "*.pb.h"
     )
-endif()
