@@ -28,7 +28,7 @@ target_include_directories(
     ${LIBRARY} PUBLIC $<BUILD_INTERFACE:${PROTO_BINARY_DIR}>
                     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
-target_link_libraries(${LIBRARY} PUBLIC ${DEPS} protobuf::libprotobuf)
+target_link_libraries(${LIBRARY} PUBLIC protobuf::libprotobuf)
 
 install(
     DIRECTORY ${PROTO_BINARY_DIR}
