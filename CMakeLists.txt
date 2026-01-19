@@ -1,10 +1,8 @@
-if (not Protobuf_FOUND)
-    find_package(Protobuf REQUIRED CONFIG)
-endif()
-
 set(PROTO_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/generated/)
 set(LIBRARY hytech_msgs_cpp_lib)
 set(OBJECT_LIBRARY hytech_msgs_cpp_lib_object)
+
+find_package(Protobuf REQUIRED CONFIG)
 
 file(MAKE_DIRECTORY ${PROTO_BINARY_DIR})
 
