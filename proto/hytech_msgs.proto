@@ -95,15 +95,18 @@ message VehicleData
     float old_energy_meter_kw = 21;
 }
 
+/**
+* Performance tracking data over laps.
+*/
 message LapTime
 {
-    float laptime_seconds = 1;
-    float live_delta = 2;
-    float best_laptime_seconds = 3;
-    float last_laptime_seconds = 4;
-    int64 lapcount = 5;
-    float max_lap_speed_ms = 6;
-    float min_lap_speed_ms = 7;
+    float laptime_seconds = 1; // current laptime in seconds
+    float live_delta = 2; // live delta to best laptime in seconds
+    float best_laptime_seconds = 3; // best laptime in seconds
+    float last_laptime_seconds = 4; // last laptime in seconds
+    int64 lapcount = 5; // number of laps completed
+    float max_lap_speed_ms = 6; // max speed achieved in current lap in m/s
+    float min_lap_speed_ms = 7; // min speed achieved in current lap in m/s
 }
 
 
