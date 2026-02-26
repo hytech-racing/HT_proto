@@ -219,8 +219,7 @@ message DashInputState_s
     bool mode_btn_is_pressed = 4; 
     bool start_btn_is_pressed = 5; 
     bool data_btn_is_pressed = 6;
-    bool left_paddle_is_pressed = 7; 
-    bool right_paddle_is_pressed = 8; 
+    bool BUTTON_2_is_pressed = 7; 
     ControllerMode_e dial_state = 9; 
 }   
 
