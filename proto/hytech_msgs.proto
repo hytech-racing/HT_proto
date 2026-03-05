@@ -99,6 +99,7 @@ message LapTime
 {
     float laptime_seconds = 1;
     int64 lapcount = 2;
+    float energy_used = 3;
 }
 
 
