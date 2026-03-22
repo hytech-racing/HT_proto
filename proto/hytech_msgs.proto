@@ -168,6 +168,10 @@ message ACUCoreData
     float min_measured_pack_voltage = 11; // lowest pack voltage measured
     float min_measured_tractive_system_voltage = 12; // lowest tractive system voltage measured
     float min_measured_shdn_out_voltage = 13; // lowest shutdown out voltage read from teensy
+    float hv_plus_out_voltage = 14; // pack out voltage is within range - relevant during precharge
+    float main_ok_voltage = 15; // voltage that determines if high side contactor closes when shutdown is high
+    float main_under_threshold_voltage = 16; // output of MAIN_OK's hysteresis
+    float precharge_under_threshold_voltage = 17; // output of PRECHARGE_OK's hysteresis
 }
 
 /**
