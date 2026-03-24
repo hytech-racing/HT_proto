@@ -4,27 +4,27 @@ import "base_msgs.proto";
 
 message MCUProtoVersion
 {
-    string proto_version = 1;
+    bytes proto_version = 1;
 }
 
 message VCRProtoVersion
 {
-    string proto_version = 1;
+    bytes proto_version = 1;
 }
 
 message VCFProtoVersion
 {
-    string proto_version = 1;
+    bytes proto_version = 1;
 }
 
 message DBProtoVersion
 {
-    string proto_version = 1;
+    bytes proto_version = 1;
 }
 
 message Versions {
     uint32 ht_can_version = 1;
-    string ht_proto_version = 2;
+    bytes ht_proto_version = 2;
 }
 
 message SpeedControlIn {
