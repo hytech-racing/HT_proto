@@ -200,3 +200,7 @@ message ACUAllData
 message AeroData {
     repeated float readings_pa = 1;
 }
+
+message McapInfo {
+    string current_mcap = 1;
+}
