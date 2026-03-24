@@ -172,6 +172,7 @@ message ACUCoreData
     float main_ok_voltage = 15; // voltage that determines if high side contactor closes when shutdown is high
     float main_under_threshold_voltage = 16; // output of MAIN_OK's hysteresis
     float precharge_under_threshold_voltage = 17; // output of PRECHARGE_OK's hysteresis
+    float tractive_system_current = 18; // 14-bit ADC DC Bus Current in Amps
 }
 
 /**
