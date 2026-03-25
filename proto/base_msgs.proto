@@ -390,6 +390,16 @@ enum VehicleState_e {
     RECALIBRATING_PEDALS = 5;
 }
 
+enum ACUState_e
+{
+    STARTUP = 0;
+    ACTIVE = 1;
+    CHARGING = 2;
+    FAULTED = 3;
+    WELDED = 4;
+    WELDCHECK = 5;
+}
+
 /**
  * All Status and State Data in VCR. Contains system level states including that in Vehicle and Drivetrain SM.
  * Also contains interface level comm status of interfaces, including pedals.

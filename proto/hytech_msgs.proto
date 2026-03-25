@@ -170,9 +170,11 @@ message ACUCoreData
     float min_measured_shdn_out_voltage = 13; // lowest shutdown out voltage read from teensy
     float hv_plus_out_voltage = 14; // pack out voltage is within range - relevant during precharge
     float main_ok_voltage = 15; // voltage that determines if high side contactor closes when shutdown is high
+    float precharge_ok_voltage = 19; // 
     float main_under_threshold_voltage = 16; // output of MAIN_OK's hysteresis
     float precharge_under_threshold_voltage = 17; // output of PRECHARGE_OK's hysteresis
     float tractive_system_current = 18; // 14-bit ADC DC Bus Current in Amps
+    ACUState_e acu_state = 20; // adding in acu state
 }
 
 /**
