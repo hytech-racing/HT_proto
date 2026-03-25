@@ -175,6 +175,9 @@ message ACUCoreData
     float precharge_under_threshold_voltage = 17; // output of PRECHARGE_OK's hysteresis
     float tractive_system_current = 18; // 14-bit ADC DC Bus Current in Amps
     ACUState_e acu_state = 20; // adding in acu state
+
+    bool low_side_contactor_welded = 21; 
+    bool high_side_contactor_welded = 22; 
 }
 
 /**
