@@ -238,6 +238,15 @@ message PedalsSystemData_s
     float regen_percent = 10; 
 }
 
+message VCFShutdownSensingData_s
+{
+    float d_inertia_switch_out_read = 1;
+    float h_driver_brb_out_read = 2;
+
+    bool d_inertia_switch = 3;
+    bool h_driver_brb = 4;
+}
+
 message CurrentSensorData_s
 {
     float twentyfour_volt_sensor = 1;

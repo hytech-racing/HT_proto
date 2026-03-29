@@ -116,8 +116,9 @@ message VCFData_s
     DashInputState_s dash_input_state = 4; // Direct button signals from the dashboard IOExpander
     VCFEthernetLinkData_s vcf_ethernet_link_data = 5;
     PedalsSystemData_s pedals_system_data = 6;
-    FWVersionInfo_s firmware_version_info = 7;
-    Versions msg_versions = 8;
+    VCFShutdownSensingData_s vcf_shutdown_data = 7;
+    FWVersionInfo_s firmware_version_info = 8;
+    Versions msg_versions = 9;
 }
 
 message FWVersionInfo_s
