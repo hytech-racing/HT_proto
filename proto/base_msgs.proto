@@ -254,7 +254,7 @@ message CurrentSensorData_s
     float current_refererence_unfiltered = 3;
 }
 
-message ShutdownSensingData_s
+message VCRShutdownSensingData_s
 {
     bool i_shutdown_in = 1;
     bool j_bspd_relay = 2;
@@ -280,7 +280,7 @@ message VCFEthernetLinkData_s
 }
 
 /**
- * VFR's ethernet switch "link" data. This is a digital GPIO pin that should
+ * VCR's ethernet switch "link" data. This is a digital GPIO pin that should
  * be high when "linked" to the ethernet switch and low otherwise.
  */
 message VCREthernetLinkData_s
