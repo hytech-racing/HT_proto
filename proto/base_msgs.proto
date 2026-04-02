@@ -238,6 +238,12 @@ message PedalsSystemData_s
     float regen_percent = 10; 
 }
 
+message BrakePressureSensorData_s
+{
+    float front_brake_pressure = 1;
+    float rear_brake_pressure = 2;
+}
+
 message VCFShutdownSensingData_s
 {
     float d_inertia_switch_out_read = 1;
