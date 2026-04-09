@@ -198,8 +198,8 @@ message SteeringSensorData_s
 
 message SteeringSystemData_s
 {
-	uint32_t analog_raw = 1;
-	uint32_t digital_raw = 2;
+	uint32 analog_raw = 1;
+	uint32 digital_raw = 2;
 
 	float analog_steering_angle = 3;
 	float digital_steering_angle = 4;
