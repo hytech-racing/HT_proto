@@ -198,16 +198,23 @@ message SteeringSensorData_s
 
 message SteeringSystemData_s
 {
-	bool analog_oor = 1;
-	bool both_sensors_fail = 2;
-	bool digital_oor = 3;
-	bool dtheta_exceeded_analog = 4;
-	bool dtheta_exceeded_digital = 5;
-	bool interface_sensor_error = 6;
-	float output_steering_angle_ro = 7;
-	bool sensor_disagreement = 8;
-	float analog_raw = 9;
-	float digital_raw = 10;
+	uint32 analog_raw = 1;
+	uint32 digital_raw = 2;
+
+	float analog_steering_angle = 3;
+	float digital_steering_angle = 4;
+	float output_steering_angle = 5;
+
+	float analog_steering_velocity_deg_s = 6;
+	float digital_steering_velocity_deg_s = 7;
+
+	bool digital_oor_implausibility = 8;
+	bool analog_oor_implausibility = 9;
+	bool sensor_disagreement_implausibility = 10;
+	bool dtheta_exceeded_analog = 11;
+	bool dtheta_exceeded_digital = 12;
+	bool both_sensors_fail = 13;
+	bool interface_sensor_error = 14;
 }
 
 enum ControllerMode_e
