@@ -215,6 +215,8 @@ message SteeringSystemData_s
 	bool dtheta_exceeded_digital = 12;
 	bool both_sensors_fail = 13;
 	bool interface_sensor_error = 14;
+    bool analog_clipped = 15;
+    bool digital_clipped = 16;
 }
 
 enum ControllerMode_e
