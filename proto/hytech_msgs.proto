@@ -114,13 +114,14 @@ message VCFData_s
     FrontSusPotData_s front_suspot_data = 2;
     SteeringSensorData_s steering_data = 3;
     BrakePressureSensorData_s brake_pressure_data = 4;
-    DashInputState_s dash_input_state = 5; // Direct button signals from the dashboard IOExpander
-    VCFEthernetLinkData_s vcf_ethernet_link_data = 6;
-	SteeringSystemData_s steering_system_data = 7;
-    PedalsSystemData_s pedals_system_data = 8;
-    VCFShutdownSensingData_s vcf_shutdown_data = 9;
-    FWVersionInfo_s firmware_version_info = 10;
-    Versions msg_versions = 11;
+    BrakeRotorTempSensorData_s brake_rotor_temp_data = 5;
+    DashInputState_s dash_input_state = 6; // Direct button signals from the dashboard IOExpander
+    VCFEthernetLinkData_s vcf_ethernet_link_data = 7;
+	SteeringSystemData_s steering_system_data = 8;
+    PedalsSystemData_s pedals_system_data = 9;
+    VCFShutdownSensingData_s vcf_shutdown_data = 10;
+    FWVersionInfo_s firmware_version_info = 11;
+    Versions msg_versions = 12;
 }
 
 message FWVersionInfo_s

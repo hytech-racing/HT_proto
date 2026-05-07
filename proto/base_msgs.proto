@@ -265,6 +265,15 @@ message BrakePressureSensorData_s
     float rear_brake_pressure = 2;
 }
 
+message BrakeRotorTempSensorData_s
+{
+    float fl_max_brake_rotor_temp = 1;
+    float fl_avg_brake_rotor_temp = 2;
+
+    float fr_max_brake_rotor_temp = 3;
+    float fr_avg_brake_rotor_temp = 4;
+}
+
 message VCFShutdownSensingData_s
 {
     float d_inertia_switch_out_read = 1;
