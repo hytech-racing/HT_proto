@@ -99,6 +99,10 @@ message LapTime
 {
     float laptime_seconds = 1;
     int64 lapcount = 2;
+    float max_lap_speed = 3;
+    float best_lap_time = 4;
+    float delta_to_best = 5;
+    
 }
 
 
