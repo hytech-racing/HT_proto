@@ -457,8 +457,9 @@ message VCRStatus
     VehicleState_e vehicle_state = 1;
     DrivetrainState_e drivetrain_state = 2;
     bool pedals_heartbeat_ok = 3;
-    bool drivebrain_is_in_control = 4;
-    bool drivebrain_controller_timing_failure = 5;
+    bool steering_heartbeat_ok = 4;
+    bool drivebrain_is_in_control = 5;
+    bool drivebrain_controller_timing_failure = 6;
 }
 
 message VCRLOC
