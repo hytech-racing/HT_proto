@@ -62,6 +62,81 @@ message VNData
     vn_status status = 7;
 }
 
+message VnRawImuData
+{
+    uint64 host_timestamp_ns = 1;
+    uint64 vn_time_startup_ns = 2;
+
+    xyz_vector uncomp_accel_sensor_frd_m_ss = 3;
+    xyz_vector uncomp_gyro_sensor_frd_rad_s = 4;
+
+    xyz_vector uncomp_accel_vehicle_frd_m_ss = 5;
+    xyz_vector uncomp_gyro_vehicle_frd_rad_s = 6;
+
+    xyz_vector uncomp_accel_vehicle_flu_m_ss = 7;
+    xyz_vector uncomp_gyro_vehicle_flu_rad_s = 8;
+
+    float dt_s = 9;
+}
+
+message VnYprData
+{
+    uint64 timestamp_ns = 1;
+
+    ypr_vector ypr_deg = 2;
+}
+
+message VnGnss
+{
+    uint64 tow_ns = 1;
+    uint32 week = 2;
+    uint32 num_sats = 3;
+    
+    uint32 fix = 4;
+
+    double lat_deg = 5;
+    double lon_deg = 6;
+    double alt_m = 7;
+
+    xyz_vector vel_ned_ms = 8;
+    xyz_vector posu_ned_m = 9;
+
+    float velu_m_s = 10;
+
+    uint32 time_status = 11;
+    int32 leap_seconds = 12;
+
+}
+
+message VnDualGnssData
+{
+    uint64 timestamp_ns = 1;
+
+    VnGnss gnss1 = 2;
+    VnGnss gnss2 = 3;
+}
+
+message VnInsData
+{
+    uint64 timestamp_ns = 1;
+
+    uint32 ins_status = 2;
+
+    double lat_deg = 3;
+    double lon_deg = 4;
+    double alt_m = 5;
+
+    xyz_vector vel_body_sensor_frd_m_s = 6;
+    xyz_vector vel_body_vehicle_frd_m_s = 7;
+    xyz_vector vel_body_vehicle_flu_m_s = 8;
+
+    xyz_vector vel_ned_m_s = 9;
+
+    float posu_m = 10;
+
+    float velu_m_s = 11;
+}
+
 message WeighScaleData
 {
     float weight_lf = 1;
