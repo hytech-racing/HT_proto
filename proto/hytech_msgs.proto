@@ -110,10 +110,11 @@ message VnGnss
 
 message VnDualGnssData
 {
-    uint64 timestamp_ns = 1;
+    uint64 host_timestamp_ns = 1;
+    uint64 vn_time_startup_ns = 2;
 
-    VnGnss gnss1 = 2;
-    VnGnss gnss2 = 3;
+    VnGnss gnss1 = 3;
+    VnGnss gnss2 = 4;
 }
 
 message VnInsData
@@ -135,6 +136,130 @@ message VnInsData
     float posu_m = 10;
 
     float velu_m_s = 11;
+}
+message EkfState
+{
+    uint64 time_startup_ns = 1;
+    bool initialized = 2;
+
+    // Vehicle FRD EKF state
+    double vx_vehicle_frd_m_s = 3;
+    double vy_vehicle_frd_m_s = 4;
+    double yaw_vehicle_frd_rad = 5;
+
+    // Vehicle FLU convenience output
+    double vx_vehicle_flu_m_s = 6;
+    double vy_vehicle_flu_m_s = 7;
+    double yaw_vehicle_flu_rad = 8;
+
+    // Position in NED
+    double position_n_m = 9;
+    double position_e_m = 10;
+
+    // Startup frame to NED/north alignment, uses same convention as EKF yaw state
+    double alpha_startup_to_ned_rad = 11;
+
+    // Corrected IMU in vehicle FRD
+    double ax_corrected_vehicle_frd_m_s2 = 12;
+    double ay_corrected_vehicle_frd_m_s2 = 13;
+    double yaw_rate_corrected_vehicle_frd_rad_s = 14;
+
+    // Corrected IMU in vehicle FLU
+    double ax_corrected_vehicle_flu_m_s2 = 15;
+    double ay_corrected_vehicle_flu_m_s2 = 16;
+    double yaw_rate_corrected_vehicle_flu_rad_s = 17;
+
+    // Estimated biases in vehicle FRD
+    double bias_gyro_vehicle_frd_rad_s = 18;
+    double bias_ax_vehicle_frd_m_s2 = 19;
+    double bias_ay_vehicle_frd_m_s2 = 20;
+
+    double last_imu_dt_s = 21;
+}
+
+
+enum EkfInitStatus
+{
+    EKF_INIT_STATUS_UNSPECIFIED = 0;
+    EKF_INIT_STATUS_WAITING = 1;
+    EKF_INIT_STATUS_IN_PROGRESS = 2;
+    EKF_INIT_STATUS_DONE = 3;
+    EKF_INIT_STATUS_FAILED = 4;
+}
+
+message EkfDebugSnapshot
+{
+    // this is a snapshot since I'm not sending based on event trigger
+    uint64 time_startup_ns = 1;
+
+    EkfInitStatus imu_status = 2;
+    EkfInitStatus gnss1_status = 3;
+    EkfInitStatus gnss2_status = 4;
+    EkfInitStatus alpha_status = 5;
+
+    uint32 imu_sample_count = 6;
+    uint32 imu_required_samples = 7;
+    double imu_init_progress = 8;
+
+    uint32 gnss1_sample_count = 9;
+    uint32 gnss1_required_samples = 10;
+    double gnss1_init_progress = 11;
+
+    uint32 gnss2_sample_count = 12;
+    uint32 gnss2_required_samples = 13;
+    double gnss2_init_progress = 14;
+
+    bool stationary_detected = 15;
+
+    bool latest_zero_vel_update_enabled = 16;
+    bool latest_zero_vel_update_accepted = 17;
+    double latest_zero_vel_nis = 18;
+    double latest_zero_vel_gate = 19;
+
+    bool latest_zero_lat_vel_update_enabled = 20;
+    bool latest_zero_lat_vel_update_accepted = 21;
+    double latest_zero_lat_vel_nis = 22;
+    double latest_zero_lat_vel_gate = 23;
+    double latest_zero_lat_vel_sigma_used = 24;
+
+    bool latest_gnss1_speed_update_enabled = 25;
+    bool latest_gnss1_speed_update_accepted = 26;
+    double latest_gnss1_speed_nis = 27;
+    double latest_gnss1_speed_gate = 28;
+
+    bool latest_gnss1_vel_update_enabled = 29;
+    bool latest_gnss1_vel_update_accepted = 30;
+    double latest_gnss1_vel_nis = 31;
+    double latest_gnss1_vel_gate = 32;
+
+    bool latest_gnss1_pos_update_enabled = 33;
+    bool latest_gnss1_pos_update_accepted = 34;
+    double latest_gnss1_pos_nis = 35;
+    double latest_gnss1_pos_gate = 36;
+
+    bool latest_gnss2_speed_update_enabled = 37;
+    bool latest_gnss2_speed_update_accepted = 38;
+    double latest_gnss2_speed_nis = 39;
+    double latest_gnss2_speed_gate = 40;
+
+    bool latest_gnss2_vel_update_enabled = 41;
+    bool latest_gnss2_vel_update_accepted = 42;
+    double latest_gnss2_vel_nis = 43;
+    double latest_gnss2_vel_gate = 44;
+
+    bool latest_gnss2_pos_update_enabled = 45;
+    bool latest_gnss2_pos_update_accepted = 46;
+    double latest_gnss2_pos_nis = 47;
+    double latest_gnss2_pos_gate = 48;
+
+    double latest_gnss1_speed_sigma_used = 49;
+    double latest_gnss1_vel_sigma_used = 50;
+    double latest_gnss1_pos_sigma_used = 51;
+
+    double latest_gnss2_speed_sigma_used = 52;
+    double latest_gnss2_vel_sigma_used = 53;
+    double latest_gnss2_pos_sigma_used = 54;
+
 }
 
 message WeighScaleData
