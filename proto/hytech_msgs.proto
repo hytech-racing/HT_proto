@@ -189,77 +189,108 @@ enum EkfInitStatus
 
 message EkfDebugSnapshot
 {
-    // this is a snapshot since I'm not sending based on event trigger
+    // Snapshot message, not event-triggered.
     uint64 time_startup_ns = 1;
 
+    // Initialization status
     EkfInitStatus imu_status = 2;
     EkfInitStatus gnss1_status = 3;
     EkfInitStatus gnss2_status = 4;
     EkfInitStatus alpha_status = 5;
 
+    // IMU initialization progress
     uint32 imu_sample_count = 6;
     uint32 imu_required_samples = 7;
     double imu_init_progress = 8;
 
+    // GNSS1 initialization progress
     uint32 gnss1_sample_count = 9;
     uint32 gnss1_required_samples = 10;
     double gnss1_init_progress = 11;
 
+    // GNSS2 initialization progress
     uint32 gnss2_sample_count = 12;
     uint32 gnss2_required_samples = 13;
     double gnss2_init_progress = 14;
 
+    // Stationary detection
     bool stationary_detected = 15;
 
+    // Zero-velocity update debug
     bool latest_zero_vel_update_enabled = 16;
     bool latest_zero_vel_update_accepted = 17;
     double latest_zero_vel_nis = 18;
     double latest_zero_vel_gate = 19;
 
+    // Zero-lateral-velocity update debug
     bool latest_zero_lat_vel_update_enabled = 20;
     bool latest_zero_lat_vel_update_accepted = 21;
     double latest_zero_lat_vel_nis = 22;
     double latest_zero_lat_vel_gate = 23;
     double latest_zero_lat_vel_sigma_used = 24;
+    double latest_zero_lat_vel_residual = 25;
 
-    bool latest_gnss1_speed_update_enabled = 25;
-    bool latest_gnss1_speed_update_accepted = 26;
-    double latest_gnss1_speed_nis = 27;
-    double latest_gnss1_speed_gate = 28;
+    // GNSS1 speed update debug
+    bool latest_gnss1_speed_update_enabled = 26;
+    bool latest_gnss1_speed_update_accepted = 27;
+    double latest_gnss1_speed_nis = 28;
+    double latest_gnss1_speed_gate = 29;
+    double latest_gnss1_speed_residual = 30;
 
-    bool latest_gnss1_vel_update_enabled = 29;
-    bool latest_gnss1_vel_update_accepted = 30;
-    double latest_gnss1_vel_nis = 31;
-    double latest_gnss1_vel_gate = 32;
+    // GNSS1 velocity update debug
+    bool latest_gnss1_vel_update_enabled = 31;
+    bool latest_gnss1_vel_update_accepted = 32;
+    double latest_gnss1_vel_nis = 33;
+    double latest_gnss1_vel_gate = 34;
+    double latest_gnss1_vel_ned_n_residual = 35;
+    double latest_gnss1_vel_ned_e_residual = 36;
 
-    bool latest_gnss1_pos_update_enabled = 33;
-    bool latest_gnss1_pos_update_accepted = 34;
-    double latest_gnss1_pos_nis = 35;
-    double latest_gnss1_pos_gate = 36;
+    // GNSS1 position update debug
+    bool latest_gnss1_pos_update_enabled = 37;
+    bool latest_gnss1_pos_update_accepted = 38;
+    double latest_gnss1_pos_nis = 39;
+    double latest_gnss1_pos_gate = 40;
+    double latest_gnss1_pos_ned_n_residual = 41;
+    double latest_gnss1_pos_ned_e_residual = 42;
 
-    bool latest_gnss2_speed_update_enabled = 37;
-    bool latest_gnss2_speed_update_accepted = 38;
-    double latest_gnss2_speed_nis = 39;
-    double latest_gnss2_speed_gate = 40;
+    // GNSS2 speed update debug
+    bool latest_gnss2_speed_update_enabled = 43;
+    bool latest_gnss2_speed_update_accepted = 44;
+    double latest_gnss2_speed_nis = 45;
+    double latest_gnss2_speed_gate = 46;
+    double latest_gnss2_speed_residual = 47;
 
-    bool latest_gnss2_vel_update_enabled = 41;
-    bool latest_gnss2_vel_update_accepted = 42;
-    double latest_gnss2_vel_nis = 43;
-    double latest_gnss2_vel_gate = 44;
+    // GNSS2 velocity update debug
+    bool latest_gnss2_vel_update_enabled = 48;
+    bool latest_gnss2_vel_update_accepted = 49;
+    double latest_gnss2_vel_nis = 50;
+    double latest_gnss2_vel_gate = 51;
+    double latest_gnss2_vel_ned_n_residual = 52;
+    double latest_gnss2_vel_ned_e_residual = 53;
 
-    bool latest_gnss2_pos_update_enabled = 45;
-    bool latest_gnss2_pos_update_accepted = 46;
-    double latest_gnss2_pos_nis = 47;
-    double latest_gnss2_pos_gate = 48;
+    // GNSS2 position update debug
+    bool latest_gnss2_pos_update_enabled = 54;
+    bool latest_gnss2_pos_update_accepted = 55;
+    double latest_gnss2_pos_nis = 56;
+    double latest_gnss2_pos_gate = 57;
+    double latest_gnss2_pos_ned_n_residual = 58;
+    double latest_gnss2_pos_ned_e_residual = 59;
 
-    double latest_gnss1_speed_sigma_used = 49;
-    double latest_gnss1_vel_sigma_used = 50;
-    double latest_gnss1_pos_sigma_used = 51;
+    // Measurement sigma actually used after applying floors / fallbacks
+    double latest_gnss1_speed_sigma_used = 60;
+    double latest_gnss1_vel_sigma_used = 61;
+    double latest_gnss1_pos_sigma_used = 62;
 
-    double latest_gnss2_speed_sigma_used = 52;
-    double latest_gnss2_vel_sigma_used = 53;
-    double latest_gnss2_pos_sigma_used = 54;
+    double latest_gnss2_speed_sigma_used = 63;
+    double latest_gnss2_vel_sigma_used = 64;
+    double latest_gnss2_pos_sigma_used = 65;
 
+    // Latest GNSS measurement validity flags
+    bool latest_gnss1_vel_valid = 66;
+    bool latest_gnss1_pos_valid = 67;
+
+    bool latest_gnss2_vel_valid = 68;
+    bool latest_gnss2_pos_valid = 69;
 }
 
 message WeighScaleData
