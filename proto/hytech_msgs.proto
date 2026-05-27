@@ -62,7 +62,7 @@ message VNData
     vn_status status = 7;
 }
 
-message VnRawImuData
+message VnImuData
 {
     uint64 host_timestamp_ns = 1;
     uint64 vn_time_startup_ns = 2;
@@ -76,7 +76,20 @@ message VnRawImuData
     xyz_vector uncomp_accel_vehicle_flu_m_ss = 7;
     xyz_vector uncomp_gyro_vehicle_flu_rad_s = 8;
 
-    float dt_s = 9;
+    xyz_vector comp_accel_sensor_frd_m_ss = 9;
+    xyz_vector comp_gyro_sensor_frd_rad_s = 10;
+
+    xyz_vector comp_accel_vehicle_frd_m_ss = 11;
+    xyz_vector comp_gyro_vehicle_frd_rad_s = 12;
+
+    xyz_vector comp_accel_vehicle_flu_m_ss = 13;
+    xyz_vector comp_gyro_vehicle_flu_rad_s = 14;
+
+    xyz_vector comp_no_gravity_accel_sensor_frd_m_ss = 15;
+    xyz_vector comp_no_gravity_accel_vehicle_frd_m_ss = 16;
+    xyz_vector comp_no_gravity_accel_vehicle_flu_m_ss = 17;
+
+    float dt_s = 18;
 }
 
 message VnYprData
@@ -121,7 +134,7 @@ message VnInsData
 {
     uint64 timestamp_ns = 1;
 
-    uint32 ins_status = 2;
+    vn_status ins_status = 2;
 
     double lat_deg = 3;
     double lon_deg = 4;
