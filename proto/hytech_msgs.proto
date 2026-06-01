@@ -215,3 +215,7 @@ message AeroData {
 message McapInfo {
     string current_mcap = 1;
 }
+
+message DBSteeringCommand {
+    float desired_steering_angle_deg = 1;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+package sim_msgs;
+
+message SimGroundTruth {
+    double x_world      = 1;
+    double y_world      = 2;
+    double psi_world    = 3;
+    double vx_body      = 4;
+    double vy_body      = 5;
+    double psi_dot_body = 6;
+    double ax_body      = 7;
+    double ay_body      = 8;
+}
