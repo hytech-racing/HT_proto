@@ -291,6 +291,8 @@ message CurrentSensorData_s
 
     bool bpsd_brake_high_sense = 4;
     bool bspd_current_high_sense = 5;
+
+    float lv_bat_current_sensor_A = 6;
 }
 
 message VCRShutdownSensingData_s
