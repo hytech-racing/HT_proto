@@ -44,7 +44,7 @@ jobs:
       - name: Build python protobuf library
         run: |
           mkdir -p hytech_msgs_pb_lib/python
-          protoc --python_out=python_hytech_msgs_proto_lib ./proto/base_msgs.proto ./proto/hytech_msgs.proto
+          protoc -I=./proto --python_out=python_hytech_msgs_proto_lib proto/base_msgs.proto proto/hytech_msgs.proto
           tar -czvf python_hytech_msgs_proto_lib.tar.gz python_hytech_msgs_proto_lib
       
       
