@@ -35,6 +35,18 @@ jobs:
           mv hytech_msgs_version.h hytech_msgs_pb_lib
           echo -e "{\n\"name\": \"hytech_msgs_pb_lib\",\n\"version\": \"1.${{ github.run_number }}.0\"\n}" >> hytech_msgs_pb_lib/library.json
           tar -czvf hytech_msgs_pb_lib.tar.gz hytech_msgs_pb_lib
+
+      - name: Setup protobuf tools for python library build
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y protobuf-compiler python3-protobuf
+
+      - name: Build python protobuf library
+        run: |
+          mkdir -p hytech_msgs_pb_lib/python
+          protoc --python_out=python_hytech_msgs_proto_lib ./proto/base_msgs.proto ./proto/hytech_msgs.proto
+          tar -czvf python_hytech_msgs_proto_lib.tar.gz python_hytech_msgs_proto_lib
+      
       
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -42,6 +54,7 @@ jobs:
           tag_name: ${{ steps.date.outputs.date }}
           files: |
             hytech_msgs_pb_lib.tar.gz
+            python_hytech_msgs_proto_lib.tar.gz 
             ./proto/base_msgs.proto
             ./proto/hytech_msgs.proto
 
