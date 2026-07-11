@@ -83,6 +83,14 @@ message xyz_vector
     float z = 3;
 }
 
+message quaternion_vector
+{
+    float x = 1;
+    float y = 2;
+    float z = 3;
+    float w = 4;
+}
+
 message veh_vec_xyz_vector
 {
     xyz_vector FL = 1;
@@ -91,12 +99,17 @@ message veh_vec_xyz_vector
     xyz_vector RR = 4;
 }
 
-
 message ypr_vector
 {
     float yaw = 1;
     float pitch = 2;
     float roll = 3;
+}
+
+message pose
+{
+    xyz_vector position = 1;
+    quaternion_vector orientation = 2;
 }
 
 message GPS_data
@@ -468,4 +481,24 @@ message VCRLOC
 {
     bool ACU_LOC = 1;
     bool VCF_LOC = 2;
+}
+
+/**
+ * Foxglove schema to describe how to parse point clouds.
+*/
+message PackedElementField {
+  string name = 1;
+  fixed32 offset = 2;
+  enum NumericType {
+    UNKNOWN = 0;
+    UINT8 = 1;
+    INT8 = 2;
+    UINT16 = 3;
+    INT16 = 4;
+    UINT32 = 5;
+    INT32 = 6;
+    FLOAT32 = 7;
+    FLOAT64 = 8;
+  }
+  NumericType type = 3;
 }
