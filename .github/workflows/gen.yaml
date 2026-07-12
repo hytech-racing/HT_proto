@@ -44,7 +44,7 @@ jobs:
       - name: Build python protobuf library
         run: |
           mkdir -p python_hytech_msgs_proto_lib
-          protoc -I=./proto --python_out=python_hytech_msgs_proto_lib proto/base_msgs.proto proto/hytech_msgs.proto
+          protoc -I=./proto --python_out=python_hytech_msgs_proto_lib proto/base_msgs.proto proto/hytech_msgs.proto proto/dv_msgs.proto
           tar -czvf python_hytech_msgs_proto_lib.tar.gz python_hytech_msgs_proto_lib
       
       
@@ -57,6 +57,7 @@ jobs:
             python_hytech_msgs_proto_lib.tar.gz 
             ./proto/base_msgs.proto
             ./proto/hytech_msgs.proto
+            ./proto/dv_msgs.proto
 
       - name: Save tag name to file
         run: echo ${{ steps.date.outputs.date }} > tag_name.txt
