@@ -459,3 +459,7 @@ message AeroData {
 message McapInfo {
     string current_mcap = 1;
 }
+
+message MissionCommand_s {
+    DvMission_e mission = 1;
+}

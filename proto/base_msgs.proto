@@ -483,6 +483,13 @@ message VCRLOC
     bool VCF_LOC = 2;
 }
 
+enum DvMission_e {
+    AUTOCROSS = 0;
+    SKIDPAD = 1;
+    TRACKDRIVE = 2;
+    ACCELERATION = 3;
+}
+
 /**
  * Foxglove schema to describe how to parse point clouds.
 */
@@ -502,3 +509,4 @@ message PackedElementField {
   }
   NumericType type = 3;
 }
+
