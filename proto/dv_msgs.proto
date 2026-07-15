@@ -2,29 +2,12 @@ syntax = "proto3";
 package dv_msgs;
 import "base_msgs.proto";
 
-import "google/protobuf/timestamp.proto";
-
-/**
- * LiDAR point cloud proto message
- * Same structure as  https://github.com/foxglove/foxglove-sdk/blob/main/schemas/proto/foxglove/PointCloud.proto for consistent Foxglove logging
-*/
-message PointCloud
-{
-  google.protobuf.Timestamp timestamp = 1;
-  string frame_id = 2;
-  hytech_msgs.pose pose = 3;
-  fixed32 point_stride = 4;
-  repeated hytech_msgs.PackedElementField fields = 5;
-  bytes data = 6;
-}
-
 /**
  * Driverless cones proto message. Primarily used to package ground-truth cone positions from the simulator to Drivebrain itself.
 */
 message Cones {
   enum ConeColor { UNKNOWN = 0; BLUE = 1; YELLOW = 2; ORANGE_SMALL = 3; ORANGE_BIG = 4 ; }
-  message Cone { hytech_msgs.xyz_vector position = 1; ConeColor color = 3; }
+  message Cone { hytech_msgs.xyz_vector position = 1; ConeColor color = 2; }
   repeated Cone cones = 1;
   uint64 timestamp_us = 2;
 }
-
