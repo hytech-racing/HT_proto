@@ -150,6 +150,13 @@ message VnInsData
 
     float velu_m_s = 11;
 }
+
+message GssData {
+  uint64 sensor_timestamp_ns = 1;
+  uint64 host_timestamp_ns = 2;
+  xyz_vector vel_sensor_flu_mps = 3;
+}
+
 message EkfState
 {
     uint64 time_startup_ns = 1;
