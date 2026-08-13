@@ -3,3 +3,4 @@ base_msgs.pb.*
 ./hytech_msgs.proto
 *.h
 **.DS_Store
+.local/

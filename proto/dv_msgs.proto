@@ -11,3 +11,32 @@ message Cones {
   repeated Cone cones = 1;
   uint64 timestamp_us = 2;
 }
+
+message SimulationGroundTruth {
+  uint64 timestamp_ns = 1;
+
+  double x_world_m = 2;
+  double y_world_m = 3;
+  double yaw_world_rad = 4;
+
+  double vx_world_mps = 5;
+  double vy_world_mps = 6;
+  double yaw_rate_radps = 7;
+
+  double ax_world_mps2 = 8;
+  double ay_world_mps2 = 9;
+  double yaw_accel_radps2 = 10;
+}
+
+message DriverlessStateEstimate {
+  uint64 timestamp_ns = 1;
+  bool initialized = 2;
+
+  double x_odom_m = 3;
+  double y_odom_m = 4;
+  double yaw_odom_rad = 5;
+
+  double vx_vehicle_flu_mps = 6;
+  double vy_vehicle_flu_mps = 7;
+  double yaw_rate_vehicle_flu_radps = 8;
+}
