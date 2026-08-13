@@ -40,3 +40,46 @@ message DriverlessStateEstimate {
   double vy_vehicle_flu_mps = 7;
   double yaw_rate_vehicle_flu_radps = 8;
 }
+
+message LidarProcessingDebug {
+  uint64 timestamp_ns = 1;
+
+  uint32 input_points = 2;
+  uint32 deskewed_points = 3;
+  uint32 filtered_points = 4;
+  uint32 ground_points = 5;
+  uint32 non_ground_points = 6;
+
+  GroundRemovalDebug ground_removal = 10;
+  ClusteringDebug clustering = 11;
+  ConeFilterDebug cone_filter = 12;
+}
+
+message GroundRemovalDebug {
+  uint32 input_points = 1;
+  uint32 ground_points = 2;
+  uint32 non_ground_points = 3;
+  uint32 valid_cells = 4;
+  uint32 invalid_cells = 5;
+}
+
+message ClusteringDebug {
+  uint32 input_points = 1;
+  uint32 raw_cluster_count = 2;
+  uint32 accepted_cluster_count = 3;
+  uint32 rejected_too_small = 4;
+  uint32 rejected_too_large = 5;
+}
+
+message ConeFilterDebug {
+  uint32 input_clusters = 1;
+  uint32 accepted_candidates = 2;
+  uint32 rejected_clusters = 3;
+
+  uint32 rejected_too_far = 10;
+  uint32 rejected_too_few_points = 11;
+  uint32 rejected_too_short = 12;
+  uint32 rejected_too_tall = 13;
+  uint32 rejected_too_wide = 14;
+  uint32 rejected_too_elongated = 15;
+}
