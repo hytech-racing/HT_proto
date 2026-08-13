@@ -83,3 +83,132 @@ message ConeFilterDebug {
   uint32 rejected_too_wide = 14;
   uint32 rejected_too_elongated = 15;
 }
+
+message SlamFrontendDebug {
+  int64 timestamp_ns = 1;
+  bool frame_accepted = 2;
+  string message = 3;
+
+  uint32 landmark_observations = 4;
+  repeated uint64 new_landmark_ids = 5;
+
+  SlamFrontendDiagnostics diagnostics = 10;
+}
+
+message SlamFrontendDiagnostics {
+  uint32 detections_received = 1;
+  uint32 detections_rejected_invalid = 2;
+
+  uint32 optimized_associations = 3;
+  uint32 pending_associations = 4;
+  uint32 tentative_associations = 5;
+
+  uint32 tentative_tracks_created = 6;
+  uint32 tracks_promoted = 7;
+  uint32 tracks_removed_stale = 8;
+
+  uint32 unmatched_detection_count = 9;
+}
+
+message SlamFrontendRunnerDebug {
+  int64 timestamp_ns = 1;
+
+  uint32 point_clouds_enqueued = 2;
+  uint32 point_clouds_processed = 3;
+  uint32 nonincreasing_point_clouds = 4;
+  uint32 queue_trims = 5;
+  uint32 current_queue_depth = 6;
+  uint32 maximum_queue_depth = 7;
+  int64 latest_point_cloud_timestamp_ns = 8;
+  uint32 point_clouds_processing_failed = 9;
+
+  uint32 map_state_update_success = 20;
+  uint32 map_state_update_failed = 21;
+  string map_state_message = 22;
+  uint32 map_state_landmark_count = 23;
+  uint32 map_state_pending_tracks_resolved = 24;
+}
+
+message IncrementalGraphSlamDebug {
+  int64 timestamp_ns = 1;
+  uint64 frame_index = 2;
+
+  bool frame_accepted = 3;
+  bool update_success = 4;
+  bool core_failed = 5;
+  string message = 6;
+
+  IncrementalGraphSlamUpdateCounts update = 10;
+  IncrementalGraphSlamTotals cumulative = 11;
+  Isam2UpdateDiagnostics isam2 = 12;
+
+  bool has_current_pose = 20;
+  uint32 pose_index = 21;
+  double recorded_pose_odom_x_m = 22;
+  double recorded_pose_odom_y_m = 23;
+  double recorded_pose_odom_yaw_rad = 24;
+  double initial_pose_map_x_m = 25;
+  double initial_pose_map_y_m = 26;
+  double initial_pose_map_yaw_rad = 27;
+  double optimized_pose_map_x_m = 28;
+  double optimized_pose_map_y_m = 29;
+  double optimized_pose_map_yaw_rad = 30;
+  double pose_map_from_odom_x_m = 31;
+  double pose_map_from_odom_y_m = 32;
+  double pose_map_from_odom_yaw_rad = 33;
+}
+
+message IncrementalGraphSlamUpdateCounts {
+  uint32 observations_received = 1;
+  uint32 observations_admitted = 2;
+  SlamObservationRejectionCounts observations_rejected = 3;
+
+  uint32 new_landmarks_added = 4;
+  uint32 new_values_added = 5;
+
+  uint32 prior_factors_added = 6;
+  uint32 between_factors_added = 7;
+  uint32 measurement_factors_added = 8;
+}
+
+message IncrementalGraphSlamTotals {
+  uint32 pose_count = 1;
+  uint32 landmark_count = 2;
+
+  uint32 prior_factor_count = 3;
+  uint32 between_factor_count = 4;
+  uint32 measurement_factor_count = 5;
+
+  uint32 admitted_observation_count = 6;
+  SlamObservationRejectionCounts rejected_observations = 7;
+}
+
+message SlamObservationRejectionCounts {
+  uint32 unconfirmed_landmark_id = 1;
+  uint32 nonfinite_measurement = 2;
+  uint32 outside_measurement_range = 3;
+  uint32 duplicate_landmark_id = 4;
+}
+
+message Isam2UpdateDiagnostics {
+  bool has_error_before_update = 1;
+  double error_before_update = 2;
+  bool has_error_after_update = 3;
+  double error_after_update = 4;
+  uint32 variables_relinearized = 5;
+  uint32 variables_reeliminated = 6;
+}
+
+message SlamBackendRunnerDebug {
+  int64 timestamp_ns = 1;
+
+  uint32 landmark_frames_enqueued = 2;
+  uint32 landmark_frames_processed = 3;
+  uint32 frames_rejected_not_running = 4;
+  uint32 nonincreasing_landmark_frames = 5;
+  uint32 queue_overflows = 6;
+  uint32 current_queue_depth = 7;
+  uint32 maximum_queue_depth = 8;
+  int64 latest_landmark_frame_timestamp_ns = 9;
+  uint32 landmark_frames_processing_failed = 10;
+}
