@@ -1,3 +1,7 @@
+cmake_minimum_required(VERSION 3.13)
+project(ht_proto)
+include(GNUInstallDirs)
+
 set(PROTO_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/generated/)
 set(LIBRARY hytech_msgs_cpp_lib)
 set(OBJECT_LIBRARY hytech_msgs_cpp_lib_object)
@@ -21,7 +25,7 @@ target_link_libraries(${OBJECT_LIBRARY}
 protobuf_generate(TARGET ${OBJECT_LIBRARY} IMPORT_DIRS proto
                 PROTOC_OUT_DIR "${PROTO_BINARY_DIR}")
 
-add_library(${LIBRARY} $<TARGET_OBJECTS:${OBJECT_LIBRARY}>)
+add_library(${LIBRARY} STATIC $<TARGET_OBJECTS:${OBJECT_LIBRARY}>)
 
 target_include_directories(
     ${LIBRARY} PUBLIC $<BUILD_INTERFACE:${PROTO_BINARY_DIR}>
@@ -34,4 +38,17 @@ install(
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     FILES_MATCHING
     PATTERN "*.pb.h"
+)
+
+install(
+    TARGETS ${LIBRARY}
+    EXPORT ${PROJECT_NAME}Targets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(
+    EXPORT ${PROJECT_NAME}Targets
+    FILE ${PROJECT_NAME}Targets.cmake
+    NAMESPACE ${PROJECT_NAME}::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
 )
