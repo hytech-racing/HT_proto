@@ -10,6 +10,7 @@ add_library(${OBJECT_LIBRARY} OBJECT
     proto/hytech_msgs.proto
     proto/base_msgs.proto
     proto/dv_msgs.proto
+    proto/autonomous_msgs.proto
 )
 
 target_include_directories(${OBJECT_LIBRARY} 
