@@ -483,3 +483,15 @@ message FzEstimator {
     float rl_fz_debug_slot = 7;
     float rr_fz_debug_slot = 8;
 }
+
+message NavEstimator {
+    float pn_estimate = 1;
+    float pe_estimate = 2;
+    float yaw_estimate = 3;
+    float vx_estimate = 4;
+    float vy_estimate = 5;
+    float alpha_estimate = 6;
+    float bx_estimate = 7;
+    float by_estimate = 8;
+    float bg_estimate = 9;
+}
