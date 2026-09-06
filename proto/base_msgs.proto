@@ -48,54 +48,24 @@ message PedalSensorData_s
 
 message InverterData_s
     {
-        uint32 control_mode = 1;
-        float target_iq_apk = 2;
-        float motor_position_deg = 3;
-        bool is_motor_stationary = 4;
-
-        sint32 erpm = 5;
-        float duty_cycle_percent = 6;
-        float input_voltage = 7;
-
-        float active_ac_current_apk = 8;
-        float active_dc_current_amp = 9;
-
-        float controller_temp_c = 10;
-        float motor_temp_c = 11;
-        uint32 fault_code = 12;
-
-        float iq_apk = 13;
-        float id_apk = 14;
-
-        float throttle_signal_percent = 15;
-        float brake_signal_percent = 16;
-        bool is_drive_enabled = 17;
-        float can_map_version = 18;
-    }
-
-message InverterLimits_s
-    {
-        float max_ac_current_apk = 1;
-        float available_max_ac_current_apk = 2;
-        float min_ac_current_apk = 3;
-        float available_min_ac_current_apk = 4;
-
-        float max_dc_current_amp = 5;
-        float available_max_dc_current_amp = 6;
-        float min_dc_current_amp = 7;
-        float available_min_dc_current_amp = 8;
-
-        bool is_capacitor_temp_limit_active = 9;
-        bool is_dc_current_limit_active = 10;
-        bool is_drive_enable_limit_active = 11;
-        bool is_igbt_accel_temp_limit_active = 12;
-        bool is_igbt_temp_limit_active = 13;
-        bool is_input_voltage_limit_active = 14;
-        bool is_motor_accel_temp_limit_active = 15;
-        bool is_motor_temp_limit_active = 16;
-        bool is_rpm_min_limit_active = 17;
-        bool is_rpm_max_limit_active = 18;
-        bool is_power_limit_active = 19;
+        bool system_ready = 1;
+        bool error = 2;
+        bool warning = 3;
+        bool quit_dc_on = 4;
+        bool dc_on = 5;
+        bool quit_inverter_on = 6;
+        bool inverter_on = 7;
+        bool derating_on = 8;
+        sint32 speed_rpm = 9;
+        sint32 actual_motor_torque = 10;
+        sint32 commanded_torque = 11;
+        sint32 motor_temp = 12;
+        sint32 inverter_temp = 13;
+        sint32 diagnostic_number = 14;
+        sint32 igbt_temp = 15;
+        sint32 dc_bus_voltage = 16;
+        sint32 actual_power = 17;
+        sint32 feedback_torque = 18;
     }
 
 message veh_vec_inverter
@@ -163,7 +133,7 @@ message GPS_compass_signal_health_status
     int32 num_sats_pvt_2 = 4;
     int32 num_sats_rtk_2 = 5;
     int32 highest_cn0_2 = 6;
-    int32 num_com_sats_pvt = 7;
+    int32 num_com_sats_pvt = 7; 
     int32 num_com_sats_rtk= 8;
 }
 
@@ -279,27 +249,27 @@ message DashInputState_s
 
     bool dim_btn_is_pressed = 1;
     bool preset_btn_is_pressed = 2;
-    bool mc_reset_btn_is_pressed = 3;
-    bool mode_btn_is_pressed = 4;
-    bool start_btn_is_pressed = 5;
+    bool mc_reset_btn_is_pressed = 3; 
+    bool mode_btn_is_pressed = 4; 
+    bool start_btn_is_pressed = 5; 
     bool data_btn_is_pressed = 6;
-    bool left_paddle_is_pressed = 7;
-    bool right_paddle_is_pressed = 8;
-    ControllerMode_e dial_state = 9;
-}
+    bool left_paddle_is_pressed = 7; 
+    bool right_paddle_is_pressed = 8; 
+    ControllerMode_e dial_state = 9; 
+}   
 
 message PedalsSystemData_s
 {
-    bool accel_is_implausible = 1;
-    bool brake_is_implausible = 2;
-    bool brake_is_pressed = 3;
+    bool accel_is_implausible = 1; 
+    bool brake_is_implausible = 2; 
+    bool brake_is_pressed = 3; 
     bool accel_is_pressed = 4;
-    bool mech_brake_is_active = 5;
-    bool brake_and_accel_pressed_implausibility_high = 6;
-    bool implausibility_has_exceeded_max_duration = 7;
+    bool mech_brake_is_active = 5; 
+    bool brake_and_accel_pressed_implausibility_high = 6; 
+    bool implausibility_has_exceeded_max_duration = 7; 
     float accel_percent = 8;
     float brake_percent = 9;
-    float regen_percent = 10;
+    float regen_percent = 10; 
 }
 
 message BrakePressureSensorData_s
