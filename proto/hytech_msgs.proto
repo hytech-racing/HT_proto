@@ -459,6 +459,30 @@ message ACUAllData
     repeated uint32 invalid_packet_chip_counts = 16; // consecutive number of invalid packets received per chip
 }
 
+/**
+ * CCUData contains all CCU Data to be sent over ethernet.
+ */
+message CCUData {
+    float calculated_charge_current = 1;
+    ChargerState_e current_charger_state = 2; // current charge state from CCU SM
+    bool is_120_switched = 3;
+    float average_cell_voltage = 4; 
+    float min_cell_voltage = 5;
+    float max_cell_voltage = 6;
+    float pack_voltage = 7; // measured pack out voltage from ACU
+    float min_cell_temp = 8;
+    float max_cell_temp = 9;
+    float avg_cell_temp = 10;
+    float max_board_temp = 11;
+    repeated float cell_voltages = 12;
+    repeated float cell_temperatures = 13;
+    repeated float board_temperatures = 14;
+    float charger_current_output_A = 15; 
+    float charger_dc_output_V = 16;
+    float charger_ac_input_V = 17;
+    float em_current_A = 18; // Energy Meter current
+}
+
 message AeroData {
     repeated float readings_pa = 1;
 }

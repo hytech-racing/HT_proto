@@ -463,6 +463,19 @@ enum ACUState_e
     WELDCHECK = 5;
 }
 
+enum ChargerState_e {
+    STARTUP = 0;
+    CHECK_SWITCH = 1;           
+    CHARGE_120_UNLATCHED = 2;
+    CHARGING_120 = 3;
+    CHECK_240_B2_OK = 4;
+    CHECK_240_C2_OK = 5;
+    CHARGE_240_UNLATCHED = 6;
+    CHARGING_240  = 7;    
+    ERROR = 8;
+    NUM_CHARGER_STATES = 9;
+}
+
 /**
  * All Status and State Data in VCR. Contains system level states including that in Vehicle and Drivetrain SM.
  * Also contains interface level comm status of interfaces, including pedals.
