@@ -3,7 +3,7 @@ name: Generate and Release
 on:
   push:
     branches:
-      - master
+      - '**'
 
 jobs:
   build-lib:
@@ -13,21 +13,30 @@ jobs:
         version: [23.11]
     steps:
       - uses: cachix/install-nix-action@v23
+
       - name: Get branch names
         id: branch-name
         uses: tj-actions/branch-names@v9
-      
+
       - name: Get current date and time
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H_%M_%S')"
 
+      - name: Set tag name
+        id: tag
+        run: |
+          BRANCH="${{ steps.branch-name.outputs.current_branch }}"
+          SAFE_BRANCH=$(echo "$BRANCH" | tr '/' '-')
+          TAG_NAME="${SAFE_BRANCH}-${{ steps.date.outputs.date }}"
+          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
+
       - uses: actions/checkout@v4
         with:
           repository: hytech-racing/HT_proto
-          ref: refs/heads/master
-          
+          ref: ${{ github.ref }}
+
       - run: nix run .#nanopb-runner -- ${{ steps.date.outputs.date }}
-      
+
       - name: create release artifact
         run: |
           mkdir -p hytech_msgs_pb_lib
@@ -46,21 +55,20 @@ jobs:
           mkdir -p python_hytech_msgs_proto_lib
           protoc -I=./proto --python_out=python_hytech_msgs_proto_lib proto/base_msgs.proto proto/hytech_msgs.proto proto/dv_msgs.proto
           tar -czvf python_hytech_msgs_proto_lib.tar.gz python_hytech_msgs_proto_lib
-      
-      
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.date.outputs.date }}
+          tag_name: ${{ steps.tag.outputs.tag_name }}
           files: |
             hytech_msgs_pb_lib.tar.gz
-            python_hytech_msgs_proto_lib.tar.gz 
+            python_hytech_msgs_proto_lib.tar.gz
             ./proto/base_msgs.proto
             ./proto/hytech_msgs.proto
             ./proto/dv_msgs.proto
 
       - name: Save tag name to file
-        run: echo ${{ steps.date.outputs.date }} > tag_name.txt
+        run: echo ${{ steps.tag.outputs.tag_name }} > tag_name.txt
 
       - name: Upload tag_name as artifact
         uses: actions/upload-artifact@v4
