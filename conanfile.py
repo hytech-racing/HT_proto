@@ -3,7 +3,6 @@ from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
 
 class HT_Proto(ConanFile):
     name = "ht_proto"
-    version = "1.0.0"
     settings = "os", "compiler", "build_type", "arch"
     generators = "CMakeDeps", "CMakeToolchain"
     exports_sources = "CMakeLists.txt", "proto/**"
