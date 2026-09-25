@@ -10,6 +10,8 @@ on:
 jobs:
   build-lib:
     runs-on: ubuntu-latest
+    outputs:
+      release_name: ${{ steps.tag.outputs.tag_name }}
     strategy:
       matrix:
         version: [23.11]
@@ -83,7 +85,7 @@ jobs:
           path: tag_name.txt
 
   publish-conan:
-    if: github.event_name == 'release'
+    needs: build-lib
     runs-on: ubuntu-latest
     steps:
       - name: Checkout release tag
@@ -102,7 +104,12 @@ jobs:
           ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }}
           ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
         run: |
-          VERSION="${{ github.event.release.tag_name }}"
+          if [ "${{ github.event_name }}" = "release" ]; then
+            VERSION="${{ github.event.release.tag_name }}"
+          else
+            VERSION="${{ needs.build-lib.outputs.release_name }}"
+          fi    
+          VERSION=$(echo "$VERSION" | tr '[:upper:]' '[:lower:]')      
           conan remote add artifactory "$ARTIFACTORY_URL" --force
           conan remote login artifactory "$ARTIFACTORY_USERNAME" --password "$ARTIFACTORY_TOKEN"
           conan create . --build=missing --version="$VERSION"
