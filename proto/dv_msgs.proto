@@ -209,7 +209,7 @@ message SlamBackendRunnerDebug {
   uint32 queue_overflows = 6;
   uint32 current_queue_depth = 7;
   uint32 maximum_queue_depth = 8;
-  int64 latest_landmark_frame_timestamp_ns = 9;
+  uint64 latest_landmark_frame_timestamp_ns = 9;
   uint32 landmark_frames_processing_failed = 10;
 }
 
@@ -220,7 +220,7 @@ message LidarIMU {
   double gyro_x = 4; 
   uint32 gyro_y = 5;
   uint32 gyro_z = 6;
-  uint16 status = 7;
+  uint32 status = 7;
   uint32 alert_flags = 8;
   uint64 timestamp = 9;
   uint32 measurement_id = 10;
