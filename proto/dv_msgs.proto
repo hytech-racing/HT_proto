@@ -214,14 +214,14 @@ message SlamBackendRunnerDebug {
 }
 
 message LidarIMU {
-  uint32 accelerometer_x = 1;
-  uint32 accelerometer_y = 2;
-  uint32 accelerometer_z = 3;
-  uint32 gyro = 4; 
+  double accelerometer_x = 1;
+  double accelerometer_y = 2;
+  double accelerometer_z = 3;
+  double gyro_x = 4; 
   uint32 gyro_y = 5;
   uint32 gyro_z = 6;
-  uint32 status = 7;
+  uint16 status = 7;
   uint32 alert_flags = 8;
-  uint32 timestamp = 9;
+  uint64 timestamp = 9;
   uint32 measurement_id = 10;
 }
