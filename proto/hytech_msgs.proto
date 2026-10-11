@@ -519,3 +519,8 @@ message NavEstimator {
     float by_estimate = 8;
     float bg_estimate = 9;
 }
+
+message SteeringEstimator {
+	float steering_angle_deg = 1; 
+	float steering_angle_rads = 2; 
+}
