@@ -524,3 +524,13 @@ message SteeringEstimator {
 	float steering_angle_deg = 1; 
 	float steering_angle_rads = 2; 
 }
+
+message KrakenInfo {
+	float pos_rotation = 1; 
+	float steering_angle_degs = 2;
+	float setpoint_angle_degs = 3; 
+	float stator_current = 4; 
+	float supply_current = 5; 
+	float temp_C = 6; 
+	float applied_voltage = 7; 
+}
