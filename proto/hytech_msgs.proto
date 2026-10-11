@@ -523,6 +523,9 @@ message NavEstimator {
 message SteeringEstimator {
 	float steering_angle_deg = 1; 
 	float steering_angle_rads = 2; 
+
+	float column_angle_deg = 3; 
+	float column_angle_rot = 4;
 }
 
 message KrakenInfo {
