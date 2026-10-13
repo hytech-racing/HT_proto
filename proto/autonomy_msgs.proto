@@ -1,0 +1,31 @@
+syntax = "proto3";
+package hytech_msgs;
+
+message Point2D {
+  double x_map_m = 1;
+  double y_map_m = 2;
+}
+
+message Arc2D {
+  Point2D begin = 1;
+  Point2D end = 2;
+
+  // Positive = left turn, negative = right turn.
+  // Zero means a straight line.
+  double signed_curvature_inv_m = 3;
+}
+
+message PlannerVisualization {
+  uint64 timestamp_ns = 1;
+
+  repeated Point2D midpoints = 2;
+  Arc2D planner_arc = 3;
+
+  double lookahead_distance_m = 4;
+}
+
+message VelocityPIDGains {
+  float kp = 1;
+  float ki = 2;
+  float kd = 3;
+}
