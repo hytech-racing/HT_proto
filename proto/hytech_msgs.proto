@@ -537,4 +537,5 @@ message KrakenInfo {
 	float temp_C = 6; 
 	float applied_voltage = 7; 
 	float velocity_deg_per_s = 8; 
+	uint32 fault_field = 9; 
 }
