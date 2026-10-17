@@ -536,4 +536,7 @@ message KrakenInfo {
 	float supply_current = 5; 
 	float temp_C = 6; 
 	float applied_voltage = 7; 
+	float velocity_deg_per_s = 8; 
+	string active_faults = 9; 
+	float supply_voltage = 10; 
 }
