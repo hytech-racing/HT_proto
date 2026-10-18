@@ -470,3 +470,17 @@ message McapInfo {
 message MissionCommand_s {
     DvMission_e mission = 1;
 }
+
+message OMSData {
+    float sample_time_s = 1;
+    float roll_deg = 2;            // w8
+    float pitch_deg = 3;           // w9
+    xyz_vector acc_hor_m_ss = 4;   // w10-12
+    xyz_vector rate_hor_deg_s = 5; // w13-15
+    xyz_vector acc_m_ss = 6;       // w23-25
+    xyz_vector rate_deg_s = 7;     // w26-28
+    float temp_sensor_c = 8;       // w34
+    uint32 status_word = 9;        // w35, DBC Status bit layout
+    uint32 packet_seq = 10;
+    repeated fixed32 raw_words = 11; // all 36 words, bit-exact, so w1-7/16-22/29-33 are never lost
+}
