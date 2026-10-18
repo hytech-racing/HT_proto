@@ -4,3 +4,4 @@ base_msgs.pb.*
 *.h
 **.DS_Store
 .local/
+build/

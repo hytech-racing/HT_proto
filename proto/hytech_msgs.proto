@@ -459,6 +459,30 @@ message ACUAllData
     repeated uint32 invalid_packet_chip_counts = 16; // consecutive number of invalid packets received per chip
 }
 
+/**
+ * CCUData contains all CCU Data to be sent over ethernet.
+ */
+message CCUData {
+    float calculated_charge_current = 1;
+    ChargerState_e current_charger_state = 2; // current charge state from CCU SM
+    bool is_120_switched = 3;
+    float average_cell_voltage = 4; 
+    float min_cell_voltage = 5;
+    float max_cell_voltage = 6;
+    float pack_voltage = 7; // measured pack out voltage from ACU
+    float min_cell_temp = 8;
+    float max_cell_temp = 9;
+    float avg_cell_temp = 10;
+    float max_board_temp = 11;
+    repeated float cell_voltages = 12;
+    repeated float cell_temperatures = 13;
+    repeated float board_temperatures = 14;
+    float charger_current_output_A = 15; 
+    float charger_dc_output_V = 16;
+    float charger_ac_input_V = 17;
+    float em_current_A = 18; // Energy Meter current
+}
+
 message AeroData {
     repeated float readings_pa = 1;
 }
@@ -483,4 +507,50 @@ message OMSData {
     uint32 status_word = 9;        // w35, DBC Status bit layout
     uint32 packet_seq = 10;
     repeated fixed32 raw_words = 11; // all 36 words, bit-exact, so w1-7/16-22/29-33 are never lost
+}
+
+/** Estimator Messages */
+message FzEstimator {
+    float fl_fz_estimate = 1;
+    float fr_fz_estimate = 2;
+    float rl_fz_estimate = 3;
+    float rr_fz_estimate = 4;
+
+    float fl_fz_debug_slot = 5;
+    float fr_fz_debug_slot = 6;
+    float rl_fz_debug_slot = 7;
+    float rr_fz_debug_slot = 8;
+}
+
+message NavEstimator {
+    float pn_estimate = 1;
+    float pe_estimate = 2;
+    float yaw_estimate = 3;
+    float vx_estimate = 4;
+    float vy_estimate = 5;
+    float alpha_estimate = 6;
+    float bx_estimate = 7;
+    float by_estimate = 8;
+    float bg_estimate = 9;
+}
+
+message SteeringEstimator {
+	float steering_angle_deg = 1; 
+	float steering_angle_rads = 2; 
+
+	float column_angle_deg = 3; 
+	float column_angle_rot = 4;
+}
+
+message KrakenInfo {
+	float pos_rotation = 1; 
+	float steering_angle_degs = 2;
+	float setpoint_angle_degs = 3; 
+	float stator_current = 4; 
+	float supply_current = 5; 
+	float temp_C = 6; 
+	float applied_voltage = 7; 
+	float velocity_deg_per_s = 8; 
+	string active_faults = 9; 
+	float supply_voltage = 10; 
 }
