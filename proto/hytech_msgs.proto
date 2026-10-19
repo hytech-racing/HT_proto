@@ -495,18 +495,58 @@ message MissionCommand_s {
     DvMission_e mission = 1;
 }
 
+message OMSMotion
+{
+    float vel_x_kmh = 1;   // longitudinal velocity
+    float vel_y_kmh = 2;   // transverse velocity
+    float vel_a_kmh = 3;   // absolute velocity, carries the direction sign
+    float ang_s_deg = 4;   // slip angle, atan(vel_y / vel_x)
+    int32 dist_a_mm = 5;   // travelled distance, signed
+    float radius_m = 6;    // vel_a / rate_z, clamped to +-327.67
+    float acc_c_m_ss = 7;  // centrifugal acceleration, vel_a * rate_z
+}
+
+/** Spatial-filter outputs*/
+message OMSMotionSp
+{
+    float vel_a_kmh = 1;
+    float vel_y_kmh = 2;
+    float vel_x_kmh = 3;
+    float ang_s_deg = 4;
+    float dist_a_mm = 5;
+}
+
+message OMSStatus
+{
+    bool standstill = 1;
+    bool direction_neg = 2;
+    bool rate_adjust_active = 3;
+    bool trigger = 4;
+    uint32 brake_acc_status = 5;
+    bool illu_on = 6;
+    bool illu_ok = 7;
+    bool sensor_connected = 8;
+    bool adjustment_active = 9;
+    bool can_ang_adj_failed = 10;
+    bool status_ok = 11;
+    uint32 info_bits = 12;
+}
+
 message OMSData {
     float sample_time_s = 1;
-    float roll_deg = 2;            // w8
-    float pitch_deg = 3;           // w9
-    xyz_vector acc_hor_m_ss = 4;   // w10-12
-    xyz_vector rate_hor_deg_s = 5; // w13-15
-    xyz_vector acc_m_ss = 6;       // w23-25
-    xyz_vector rate_deg_s = 7;     // w26-28
-    float temp_sensor_c = 8;       // w34
-    uint32 status_word = 9;        // w35, DBC Status bit layout
+    float roll_deg = 2;
+    float pitch_deg = 3;
+    xyz_vector acc_hor_m_ss = 4;    // horizontal frame
+    xyz_vector rate_hor_deg_s = 5;  // horizontal frame
+    xyz_vector acc_m_ss = 6;        // sensor frame
+    xyz_vector rate_deg_s = 7;      // sensor frame
+    float temp_sensor_c = 8;
+    uint32 status_word = 9;         // raw status bits
     uint32 packet_seq = 10;
-    repeated fixed32 raw_words = 11; // all 36 words, bit-exact, so w1-7/16-22/29-33 are never lost
+    OMSMotion motion = 11;
+    OMSMotion motion_poi = 12;      // point of interest
+    OMSMotionSp motion_sp = 13;
+    OMSStatus status = 14;
 }
 
 /** Estimator Messages */
