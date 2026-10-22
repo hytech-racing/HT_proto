@@ -212,3 +212,74 @@ message SlamBackendRunnerDebug {
   int64 latest_landmark_frame_timestamp_ns = 9;
   uint32 landmark_frames_processing_failed = 10;
 }
+
+/**
+ * One VelocityPlanner::step_controller tick: the spline fit over the path points ahead, their
+ * curvature-limited velocities, every change made by the forward/backward passes, and the
+ * resulting accel and torque request. Replaying changes over path_points gives the final profile.
+ * Points and vectors are map frame, packed in xyz_vector with z = 0.
+*/
+message VelocityPlannerDebug {
+  enum Status {
+    UNKNOWN = 0;
+    OK = 1;
+    INVALID_HEADING = 2;
+    EMPTY_PATH = 3;
+    NEGATIVE_LONGITUDINAL_VELOCITY = 4;
+    NO_FORWARD_POINT = 5;
+    STALE_PATH = 6;
+    SPLINE_TOO_FEW_POINTS = 7;
+    PATH_POINTS_TOO_CLOSE = 8;
+    SMALL_SPLINE_TANGENT = 9; // failing point index is path_points size
+    CAR_TOO_CLOSE_TO_FIRST_POINT = 10;
+  }
+
+  uint64 timestamp_ns = 1;
+  uint64 iteration = 2;
+  Status status = 3;
+
+  float mu = 4;
+  float max_car_velocity_mps = 5;
+
+  hytech_msgs.xyz_vector car_position_m = 6;
+  hytech_msgs.xyz_vector car_heading = 7;
+  hytech_msgs.xyz_vector car_velocity_raw_mps = 8;
+  optional float longitudinal_velocity_mps = 9;
+
+  VelocityPlannerSpline spline = 10;
+  repeated VelocityPlannerPathPoint path_points = 11; // velocity is the curvature limit, before the passes
+  repeated VelocityPlannerChange changes = 12;
+
+  optional float target_velocity_mps = 13;
+  optional float accel_mps2 = 14;
+  optional float torque_per_wheel_nm = 15;
+}
+
+/* Natural cubic spline over the path points, parameterized by cumulative chord length (m) */
+message VelocityPlannerSpline {
+  /* c0..c3, p(u) = c0 + c1 u + c2 u^2 + c3 u^3 with u in [0, 1] between path_points i and i + 1 */
+  message Segment { repeated hytech_msgs.xyz_vector coefficients = 1; }
+
+  repeated Segment segments = 1;
+}
+
+message VelocityPlannerPathPoint {
+  hytech_msgs.xyz_vector position_m = 1;
+  float curvature = 2; // signed, 1/m
+  float velocity_mps = 3;
+}
+
+message VelocityPlannerChange {
+  enum Pass { UNKNOWN = 0; FORWARD = 1; BACKWARD = 2; }
+
+  Pass pass = 1;
+  uint32 index = 2; // into path_points
+  bool changed = 3;
+  float new_velocity_mps = 4;
+
+  float curvature = 5; // of the segment's start point, 1/m
+  float lateral_accel_mps2 = 6;
+  float longitudinal_accel_available_mps2 = 7;
+  float velocity_allowed_by_accel_mps = 8;
+  bool lateral_accel_exceeded = 9;
+}
