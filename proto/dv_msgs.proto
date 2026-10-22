@@ -283,3 +283,13 @@ message VelocityPlannerChange {
   float velocity_allowed_by_accel_mps = 8;
   bool lateral_accel_exceeded = 9;
 }
+
+/* One PurePursuitController::step_controller tick. target_point_m is unset when the lookahead circle doesn't meet the path. */
+message PurePursuitDebug {
+  uint64 timestamp_ns = 1;
+  float lookahead_distance_m = 2; // radius of the lookahead circle around the car
+  hytech_msgs.xyz_vector target_point_m = 3; // map frame, z = 0
+  float curvature = 4; // signed, 1/m, of the arc from the car to the target point
+  float yaw_rad = 5; // front-wheel steering angle from the bicycle model
+  float column_angle_deg = 6;
+}
