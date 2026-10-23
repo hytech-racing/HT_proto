@@ -51,6 +51,19 @@ message MCUCommandData
     int64 prev_MCU_recv_millis = 3;
 }
 
+/**
+ * A speed command sent over UDP from an off-car drivebrain to the on-car drivebrain,
+ * which actuates it as if it had come from its own controller. Sent every control tick.
+ */
+message RemoteDriveCommand
+{
+    uint32 seq = 1;                       // increments every send, the receiver drops anything not newer
+    int64 send_time_us = 2;               // sender's clock, for latency logging only
+    veh_vec_float desired_rpms = 3;
+    veh_vec_float torque_limit_nm = 4;
+    optional float desired_steering_deg = 5;
+}
+
 message VNData
 {
     xyz_vector vn_vel_m_s = 1;
