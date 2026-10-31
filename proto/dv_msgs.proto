@@ -12,7 +12,8 @@ message Cones {
     ConeColor color = 2;
     uint64 landmark_id = 3;        // SLAM landmark
     float color_confidence = 4;    // share of the colour evidence behind `color`, 0..1
-    bool optimized = 5;            // Optimized in SLAM? or still pending?
+    float mean_reflectivity = 5;
+    bool optimized = 6;            // Optimized in SLAM? or still pending?
   }
   repeated Cone cones = 1;
   uint64 timestamp_us = 2;
