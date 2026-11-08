@@ -594,3 +594,57 @@ message KrakenInfo {
 	string active_faults = 9; 
 	float supply_voltage = 10; 
 }
+
+// Jetson tegrastats readings. Usage is percent (0-100), temperatures are Celsius,
+// frequencies are MHz, and power fields contain instantaneous milliwatts.
+message TegraStats {
+    float ram_used_mb = 1;
+    float ram_total_mb = 2;
+    float ram_used_percent = 3;
+    float gpu_usage_percent = 4;
+    float cpu0usage_percent = 10;
+    float cpu1usage_percent = 11;
+    float cpu2usage_percent = 12;
+    float cpu3usage_percent = 13;
+    float cpu4usage_percent = 14;
+    float cpu5usage_percent = 15;
+    float cpu6usage_percent = 16;
+    float cpu7usage_percent = 17;
+    float cpu8usage_percent = 18;
+    float cpu9usage_percent = 19;
+    float cpu10usage_percent = 20;
+    float cpu11usage_percent = 21;
+    float cpu0frequency_mhz = 30;
+    float cpu1frequency_mhz = 31;
+    float cpu2frequency_mhz = 32;
+    float cpu3frequency_mhz = 33;
+    float cpu4frequency_mhz = 34;
+    float cpu5frequency_mhz = 35;
+    float cpu6frequency_mhz = 36;
+    float cpu7frequency_mhz = 37;
+    float cpu8frequency_mhz = 38;
+    float cpu9frequency_mhz = 39;
+    float cpu10frequency_mhz = 40;
+    float cpu11frequency_mhz = 41;
+    bool cpu0online = 50;
+    bool cpu1online = 51;
+    bool cpu2online = 52;
+    bool cpu3online = 53;
+    bool cpu4online = 54;
+    bool cpu5online = 55;
+    bool cpu6online = 56;
+    bool cpu7online = 57;
+    bool cpu8online = 58;
+    bool cpu9online = 59;
+    bool cpu10online = 60;
+    bool cpu11online = 61;
+    float cpu_temp_c = 70;
+    float gpu_temp_c = 71;
+    float soc0_temp_c = 72;
+    float soc1_temp_c = 73;
+    float soc2_temp_c = 74;
+    float tj_temp_c = 75;
+    float vdd_gpu_soc_mw = 80;
+    float vdd_cpu_cv_mw = 81;
+    float vin_sys_5v0_mw = 82;
+}
