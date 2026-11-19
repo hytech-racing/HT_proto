@@ -594,3 +594,25 @@ message KrakenInfo {
 	string active_faults = 9; 
 	float supply_voltage = 10; 
 }
+
+message QPAllocator {
+    double yaw_rate_reference = 1;
+    double des_mz = 2;
+    double yaw_rate_meas = 3;
+    
+    double final_torque_fl = 4;
+    double final_torque_fr = 5;
+    double final_torque_rl = 6;
+    double final_torque_rr = 7;
+
+    double tot_torque_constraint = 8;
+    double amk_torque_constraint_fl = 9;
+    double amk_torque_constraint_fr = 10;
+    double amk_torque_constraint_rl = 11;
+    double amk_torque_constraint_rr = 12;
+
+    double traction_torque_constraint_fl = 13;
+    double traction_torque_constraint_fr = 14;
+    double traction_torque_constraint_rl = 15;
+    double traction_torque_constraint_rr = 16;
+}
